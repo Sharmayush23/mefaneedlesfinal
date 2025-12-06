@@ -94,7 +94,5 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     );
   })();
 } else {
-  // For Vercel, we need to register routes immediately
-  // Note: ensure this doesn't cause side effects in other imports
-  registerRoutes(httpServer, app).catch(console.error);
+  // logic handled in api/index.ts for Vercel
 }
