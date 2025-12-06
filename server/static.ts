@@ -5,9 +5,8 @@ import path from "path";
 export function serveStatic(app: Express) {
   const distPath = __dirname;
   if (!fs.existsSync(distPath)) {
-    throw new Error(
-      `Could not find the build directory: ${distPath}, make sure to build the client first`,
-    );
+    console.warn(`Could not find the build directory: ${distPath}, skipping static file serving`);
+    return;
   }
 
   app.use(express.static(distPath));
