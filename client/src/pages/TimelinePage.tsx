@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { Calendar, Award, Globe, Factory, CheckCircle, Zap, Users, Building, Loader2 } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
+
+import { Calendar, Award, Globe, Factory, CheckCircle, Zap, Users, Building } from "lucide-react";
 import founderImage from "@/assets/founder.jpg";
-import type { TimelineEvent } from "@shared/schema";
+import { timelineEvents } from "@/data/timeline";
 
 const iconMap: Record<number, typeof Building> = {
   1968: Building,
@@ -22,9 +22,8 @@ const fadeInUp = {
 };
 
 export default function TimelinePage() {
-  const { data: timelineEvents = [], isLoading, error } = useQuery<TimelineEvent[]>({
-    queryKey: ["/api/timeline"],
-  });
+  const isLoading = false;
+  const error = null;
 
   return (
     <div className="pt-20">
@@ -104,81 +103,65 @@ export default function TimelinePage() {
             </h2>
           </motion.div>
 
-          {isLoading ? (
-            <div className="flex items-center justify-center py-20" data-testid="loading-timeline">
-              <Loader2 className="h-8 w-8 animate-spin text-primary" />
-              <span className="ml-2 text-muted-foreground">Loading timeline...</span>
-            </div>
-          ) : error ? (
-            <div className="text-center py-16" data-testid="error-timeline">
-              <p className="text-destructive text-lg mb-4">Failed to load timeline</p>
-            </div>
-          ) : (
-            <div className="relative">
-              <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary" />
+          <div className="relative">
+            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary" />
 
-              {timelineEvents.map((event, index) => {
-                const Icon = iconMap[event.year] || Building;
-                const color = index % 2 === 0 ? "primary" : "accent";
-                
-                return (
-                  <motion.div
-                    key={event.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className={`relative flex items-center mb-12 ${
-                      index % 2 === 0 ? "md:flex-row-reverse" : ""
+            {timelineEvents.map((event, index) => {
+              const Icon = iconMap[event.year] || Building;
+              const color = index % 2 === 0 ? "primary" : "accent";
+
+              return (
+                <motion.div
+                  key={event.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className={`relative flex items-center mb-12 ${index % 2 === 0 ? "md:flex-row-reverse" : ""
                     }`}
-                    data-testid={`timeline-event-${event.year}`}
-                  >
-                    <div
-                      className={`absolute left-8 md:left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full border-4 border-background z-10 ${
-                        color === "primary" ? "bg-primary" : "bg-accent"
+                  data-testid={`timeline-event-${event.year}`}
+                >
+                  <div
+                    className={`absolute left-8 md:left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full border-4 border-background z-10 ${color === "primary" ? "bg-primary" : "bg-accent"
                       }`}
-                    />
+                  />
 
-                    <div
-                      className={`ml-16 md:ml-0 md:w-1/2 ${
-                        index % 2 === 0 ? "md:pr-12" : "md:pl-12"
+                  <div
+                    className={`ml-16 md:ml-0 md:w-1/2 ${index % 2 === 0 ? "md:pr-12" : "md:pl-12"
                       }`}
-                    >
-                      <div className="bg-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div
-                            className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                              color === "primary"
-                                ? "bg-primary/10 text-primary"
-                                : "bg-accent/10 text-accent"
+                  >
+                    <div className="bg-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div
+                          className={`w-10 h-10 rounded-lg flex items-center justify-center ${color === "primary"
+                            ? "bg-primary/10 text-primary"
+                            : "bg-accent/10 text-accent"
                             }`}
-                          >
-                            <Icon className="h-5 w-5" />
-                          </div>
-                          <span
-                            className={`font-heading font-bold text-xl ${
-                              color === "primary"
-                                ? "text-primary"
-                                : "text-accent"
-                            }`}
-                            data-testid={`text-year-${event.year}`}
-                          >
-                            {event.year}
-                          </span>
+                        >
+                          <Icon className="h-5 w-5" />
                         </div>
-                        <h3 className="font-heading font-semibold text-lg mb-2" data-testid={`text-title-${event.year}`}>
-                          {event.title}
-                        </h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed" data-testid={`text-desc-${event.year}`}>
-                          {event.description}
-                        </p>
+                        <span
+                          className={`font-heading font-bold text-xl ${color === "primary"
+                            ? "text-primary"
+                            : "text-accent"
+                            }`}
+                          data-testid={`text-year-${event.year}`}
+                        >
+                          {event.year}
+                        </span>
                       </div>
+                      <h3 className="font-heading font-semibold text-lg mb-2" data-testid={`text-title-${event.year}`}>
+                        {event.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed" data-testid={`text-desc-${event.year}`}>
+                        {event.description}
+                      </p>
                     </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          )}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </section>
 

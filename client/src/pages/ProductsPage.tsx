@@ -1,326 +1,212 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Search, Filter, Factory, ArrowRight, Loader2 } from "lucide-react";
+import { useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Search, Filter, Factory, ArrowRight, X } from "lucide-react";
 import { Link } from "wouter";
-import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import type { Product } from "@shared/schema";
+import { products } from "@/data/products";
 
 const categories = [
-  { value: "all", label: "All Products" },
+  { value: "all", label: "All Collections" },
   { value: "circular", label: "Circular Knitting" },
   { value: "hosiery", label: "Hosiery" },
   { value: "flat", label: "Flat Knitting" },
   { value: "transfer", label: "Transfer Needles" },
 ];
 
-const gaugeRanges = [
-  { value: "all", label: "All Gauges" },
-  { value: "7-15", label: "7G - 15G" },
-  { value: "16-24", label: "16G - 24G" },
-  { value: "25-40", label: "25G - 40G" },
-];
-
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 },
+  transition: { duration: 0.4 },
 };
 
 const stagger = {
   animate: {
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.05,
     },
   },
 };
 
 export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [selectedGauge, setSelectedGauge] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const apiUrl = selectedCategory === "all"
-    ? "/api/products"
-    : `/api/products?category=${selectedCategory}`;
-
-  const { data: products = [], isLoading, error } = useQuery<Product[]>({
-    queryKey: ["/api/products", { category: selectedCategory }],
-    queryFn: async () => {
-      const res = await fetch(apiUrl);
-      if (!res.ok) throw new Error("Failed to fetch products");
-      return res.json();
-    },
-  });
-
-  const parseGaugeRange = (gaugeStr: string): [number, number] | null => {
-    const matches = gaugeStr.match(/(\d+).*?(\d+)/);
-    if (matches) {
-      return [parseInt(matches[1], 10), parseInt(matches[2], 10)];
-    }
-    return null;
-  };
-
-  const checkGaugeOverlap = (productGauge: string | null | undefined, filterGauge: string): boolean => {
-    if (!productGauge || filterGauge === "all") return true;
-
-    const productRange = parseGaugeRange(productGauge);
-    const filterRange = parseGaugeRange(filterGauge);
-
-    if (!productRange || !filterRange) return true;
-
-    const [productMin, productMax] = productRange;
-    const [filterMin, filterMax] = filterRange;
-
-    return productMin <= filterMax && productMax >= filterMin;
-  };
-
-  const filteredProducts = products.filter((product) => {
-    const matchesSearch =
-      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.description.toLowerCase().includes(searchQuery.toLowerCase());
-
-    const matchesGauge = checkGaugeOverlap(product.gaugeRange, selectedGauge);
-
-    return matchesSearch && matchesGauge;
-  });
+  const filteredProducts = useMemo(() => {
+    return products.filter((product) => {
+      const matchesCategory = selectedCategory === "all" || product.category === selectedCategory;
+      const matchesSearch =
+        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+  }, [selectedCategory, searchQuery]);
 
   return (
-    <div className="pt-20">
-      <section className="relative min-h-[40vh] flex items-center bg-gradient-to-br from-[#1A1A1A] via-[#262626] to-[#1A1A1A] overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            }}
-          />
+    <div className="pt-20 min-h-screen bg-background text-foreground">
+      {/* Hero Section */}
+      <section className="relative h-[40vh] flex items-center justify-center bg-black overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent z-10" />
+          <div className="absolute inset-0 opacity-30 bg-[url('https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80')] bg-cover bg-center" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 text-center">
+        <div className="relative z-20 text-center max-w-4xl px-4">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7 }}
           >
-            <p className="text-accent font-semibold uppercase tracking-wider text-sm mb-4" data-testid="text-products-subtitle">
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
               Our Products
-            </p>
-            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6" data-testid="text-products-title">
-              Premium Quality Needles
             </h1>
-            <p className="text-white/70 text-lg max-w-2xl mx-auto" data-testid="text-products-description">
-              Discover our comprehensive range of high-performance needles
-              engineered for excellence in textile manufacturing.
+            <p className="text-xl text-white/70 max-w-2xl mx-auto">
+              Precision engineered needles for every knitting application.
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section className="py-8 bg-background border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex flex-col md:flex-row gap-4 items-center"
-          >
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Filter className="h-5 w-5" />
-              <span className="font-medium">Filters:</span>
+      {/* Filter & Search Bar */}
+      <section className="sticky top-20 z-40 bg-background/80 backdrop-blur-md border-b">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+            {/* Categories */}
+            <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto no-scrollbar">
+              {categories.map((cat) => (
+                <button
+                  key={cat.value}
+                  onClick={() => setSelectedCategory(cat.value)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${selectedCategory === cat.value
+                      ? "bg-primary text-primary-foreground shadow-md"
+                      : "bg-muted text-muted-foreground hover:bg-muted/80"
+                    }`}
+                >
+                  {cat.label}
+                </button>
+              ))}
             </div>
 
-            <div className="flex flex-wrap gap-4 flex-1">
-              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="w-48" data-testid="select-category">
-                  <SelectValue placeholder="Category" />
-                </SelectTrigger>
-                <SelectContent>
-                  {categories.map((cat) => (
-                    <SelectItem key={cat.value} value={cat.value} data-testid={`option-category-${cat.value}`}>
-                      {cat.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-
-              <Select value={selectedGauge} onValueChange={setSelectedGauge}>
-                <SelectTrigger className="w-40" data-testid="select-gauge">
-                  <SelectValue placeholder="Gauge" />
-                </SelectTrigger>
-                <SelectContent>
-                  {gaugeRanges.map((gauge) => (
-                    <SelectItem key={gauge.value} value={gauge.value} data-testid={`option-gauge-${gauge.value}`}>
-                      {gauge.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
+            {/* Search */}
             <div className="relative w-full md:w-64">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Search products..."
+                placeholder="Search needles..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
-                data-testid="input-search"
+                className="pl-10 bg-muted/50 border-transparent focus:bg-background focus:border-primary transition-all"
               />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              )}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      <section className="py-16 bg-background">
+      {/* Product Grid */}
+      <section className="py-12 bg-muted/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {isLoading ? (
-            <div className="flex items-center justify-center py-20" data-testid="loading-products">
-              <Loader2 className="h-8 w-8 animate-spin text-primary" />
-              <span className="ml-2 text-muted-foreground">Loading products...</span>
-            </div>
-          ) : error ? (
-            <div className="text-center py-16" data-testid="error-products">
-              <p className="text-destructive text-lg mb-4">Failed to load products</p>
-              <Button variant="outline" onClick={() => window.location.reload()} data-testid="button-retry">
-                Try Again
-              </Button>
-            </div>
-          ) : (
-            <motion.div
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-              variants={stagger}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-            >
-              {filteredProducts.map((product) => (
-                <motion.div key={product.id} variants={fadeInUp}>
-                  <Link href={`/products/${product.id}`}>
-                    <Card
-                      className="group h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-md overflow-hidden cursor-pointer"
-                      data-testid={`card-product-${product.id}`}
-                    >
-                      <CardContent className="p-0">
-                        <div className="h-56 bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center relative overflow-hidden">
-                          <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent" />
+          <AnimatePresence mode="wait">
+            {filteredProducts.length > 0 ? (
+              <motion.div
+                key={selectedCategory}
+                variants={stagger}
+                initial="initial"
+                animate="animate"
+                exit={{ opacity: 0 }}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+              >
+                {filteredProducts.map((product) => (
+                  <motion.div key={product.id} variants={fadeInUp} layout>
+                    <Link href={`/products/${product.id}`}>
+                      <Card className="group h-full overflow-hidden border-0 bg-white dark:bg-zinc-900 shadow-sm hover:shadow-2xl transition-all duration-300 cursor-pointer rounded-xl transform hover:-translate-y-1">
+                        <div className="relative h-64 overflow-hidden bg-gray-100 dark:bg-zinc-800 flex items-center justify-center p-6">
                           {product.badge && (
-                            <Badge
-                              className="absolute top-4 right-4 bg-primary text-white z-10"
-                              variant="default"
-                              data-testid={`badge-product-${product.id}`}
-                            >
+                            <Badge className="absolute top-4 right-4 z-10 bg-primary text-white shadow-lg">
                               {product.badge}
                             </Badge>
                           )}
-                          <div className="w-full h-56 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                            {product.image ? (
-                              <img
-                                src={product.image}
-                                alt={product.name}
-                                className="w-full h-full object-cover"
-                              />
-                            ) : (
-                              <Factory className="h-14 w-14 text-primary/60" />
-                            )}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                          {product.image ? (
+                            <img
+                              src={product.image}
+                              alt={product.name}
+                              className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal group-hover:scale-110 transition-transform duration-500"
+                            />
+                          ) : (
+                            <Factory className="h-16 w-16 text-muted-foreground/30" />
+                          )}
+                          <div className="absolute bottom-4 left-4 right-4 z-20 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                            <Button size="sm" className="w-full bg-white text-black hover:bg-gray-100 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 font-semibold shadow-lg border-0">
+                              View Details
+                            </Button>
                           </div>
                         </div>
-                        <div className="p-6">
-                          <p className="text-xs text-primary font-semibold uppercase tracking-wider mb-2" data-testid={`text-category-${product.id}`}>
-                            {categories.find((c) => c.value === product.category)?.label}
+
+                        <CardContent className="p-5">
+                          <p className="text-xs font-bold text-primary uppercase tracking-wider mb-1">
+                            {categories.find(c => c.value === product.category)?.label || product.category}
                           </p>
-                          <h3 className="font-heading text-xl font-semibold mb-3" data-testid={`text-name-${product.id}`}>
+                          <h3 className="text-lg font-heading font-bold text-foreground mb-2 line-clamp-1 group-hover:text-primary transition-colors">
                             {product.name}
                           </h3>
-                          <p className="text-muted-foreground text-sm leading-relaxed mb-4" data-testid={`text-description-${product.id}`}>
-                            {product.description}
-                          </p>
-                          <div className="flex flex-wrap gap-2 mb-4">
-                            {product.features?.map((feature) => (
-                              <Badge
-                                key={feature}
-                                variant="secondary"
-                                className="text-xs"
-                              >
-                                {feature}
-                              </Badge>
-                            ))}
+                          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+                            <span className="bg-muted px-2 py-0.5 rounded text-xs font-medium">
+                              {product.gaugeRange}
+                            </span>
+                            <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
+                            <span className="truncate max-w-[120px]">{product.material}</span>
                           </div>
-                          <div className="pt-4 border-t">
-                            <div className="grid grid-cols-2 gap-4 text-sm">
-                              <div>
-                                <p className="text-muted-foreground">Gauge Range</p>
-                                <p className="font-medium" data-testid={`text-gauge-${product.id}`}>{product.gaugeRange}</p>
-                              </div>
-                              <div>
-                                <p className="text-muted-foreground">Coating</p>
-                                <p className="font-medium" data-testid={`text-coating-${product.id}`}>{product.coating}</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
-
-          {!isLoading && !error && filteredProducts.length === 0 && (
-            <div className="text-center py-16" data-testid="empty-products">
-              <p className="text-muted-foreground text-lg">
-                No products found matching your criteria.
-              </p>
-              <Button
-                variant="outline"
-                className="mt-4"
-                onClick={() => {
-                  setSelectedCategory("all");
-                  setSelectedGauge("all");
-                  setSearchQuery("");
-                }}
-                data-testid="button-clear-filters"
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </motion.div>
+                ))}
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-center py-32"
               >
-                Clear Filters
-              </Button>
-            </div>
-          )}
+                <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Search className="h-8 w-8 text-muted-foreground" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">No products found</h3>
+                <p className="text-muted-foreground">Try adjusting your filters or search terms.</p>
+                <Button
+                  variant="outline"
+                  className="mt-6"
+                  onClick={() => { setSelectedCategory("all"); setSearchQuery(""); }}
+                >
+                  Clear all filters
+                </Button>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </section>
 
-      <section className="py-16 bg-muted/30">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
-            <h2 className="font-heading text-3xl font-bold" data-testid="text-cta-title">
-              Need Custom Specifications?
-            </h2>
-            <p className="text-muted-foreground" data-testid="text-cta-description">
-              Our team can help you find the perfect needle solution for your
-              specific requirements. Contact us for custom orders and bulk
-              inquiries.
-            </p>
-            <Link href="/contact">
-              <Button size="lg" className="gap-2" data-testid="button-request-quote">
-                Request Quote
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
-          </motion.div>
+      {/* Call to Action */}
+      <section className="py-20 bg-primary/5 border-t">
+        <div className="max-w-4xl mx-auto text-center px-4">
+          <h2 className="text-3xl font-bold mb-4 font-heading">Need Custom Specifications?</h2>
+          <p className="text-muted-foreground mb-8 text-lg">
+            We manufacture needles to your exact requirements. Contact our engineering team for custom orders.
+          </p>
+          <Link href="/contact">
+            <Button size="lg" className="px-8 h-12 text-lg">
+              Contact Us <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
         </div>
       </section>
     </div>

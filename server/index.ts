@@ -2,6 +2,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
 import { createServer } from "http";
+import { fileURLToPath } from "url";
 
 const app = express();
 const httpServer = createServer(app);
@@ -63,7 +64,8 @@ app.use((req, res, next) => {
 export default app;
 
 // Only start server if running directly
-if (import.meta.url === `file://${process.argv[1]}`) {
+const __filename = fileURLToPath(import.meta.url);
+if (__filename === process.argv[1]) {
   (async () => {
     await registerRoutes(httpServer, app);
 

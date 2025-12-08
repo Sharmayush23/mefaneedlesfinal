@@ -34,6 +34,7 @@ export default defineConfig({
   server: {
     fs: {
       strict: true,
+      allow: [".."], // Allow serving files from one level up (project root)
       deny: ["**/.*"],
     },
   },

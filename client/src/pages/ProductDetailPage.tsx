@@ -1,11 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
 import { useParams, Link } from "wouter";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Factory, Loader2, CheckCircle, Shield, Zap } from "lucide-react";
+import { ArrowLeft, ArrowRight, Factory, CheckCircle, Shield, Zap, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import type { Product } from "@shared/schema";
+import { products } from "@/data/products";
+import { Separator } from "@/components/ui/separator";
 
 const fadeInUp = {
     initial: { opacity: 0, y: 20 },
@@ -13,31 +13,15 @@ const fadeInUp = {
     transition: { duration: 0.5 },
 };
 
-const stagger = {
-    animate: {
-        transition: {
-            staggerChildren: 0.1,
-        },
-    },
-};
-
 export default function ProductDetailPage() {
     const { id } = useParams();
+    const product = products.find((p) => p.id === id);
 
-    const { data: product, isLoading, error } = useQuery<Product>({
-        queryKey: [`/api/products/${id}`],
-    });
+    const relatedProducts = products
+        .filter((p) => p.category === product?.category && p.id !== product?.id)
+        .slice(0, 3);
 
-    if (isLoading) {
-        return (
-            <div className="min-h-screen pt-20 flex items-center justify-center">
-                <Loader2 className="h-8 w-8 animate-spin text-primary" />
-                <span className="ml-2 text-muted-foreground">Loading product details...</span>
-            </div>
-        );
-    }
-
-    if (error || !product) {
+    if (!product) {
         return (
             <div className="min-h-screen pt-20 flex flex-col items-center justify-center text-center px-4">
                 <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
@@ -55,160 +39,182 @@ export default function ProductDetailPage() {
     }
 
     return (
-        <div className="pt-20">
-            <section className="bg-muted/30 py-12 border-b">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="pt-20 bg-background min-h-screen">
+            {/* Breadcrumb / Back Navigation */}
+            <div className="border-b bg-muted/20">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                     <Link href="/products">
-                        <Button variant="ghost" className="mb-6 pl-0 hover:pl-2 transition-all">
+                        <Button variant="ghost" className="pl-0 hover:pl-2 transition-all text-muted-foreground hover:text-foreground">
                             <ArrowLeft className="mr-2 h-4 w-4" />
                             Back to Products
                         </Button>
                     </Link>
+                </div>
+            </div>
 
-                    <div className="grid lg:grid-cols-2 gap-12 items-start">
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5 }}
-                        >
-                            <div className="rounded-2xl overflow-hidden bg-white shadow-xl border border-border/50 relative group">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+                    {/* Left Column: Sticky Image */}
+                    <div className="relative">
+                        <div className="lg:sticky lg:top-32 space-y-6">
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                className="bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl border border-border/50 relative aspect-[4/3] flex items-center justify-center p-8 group"
+                            >
+                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-100 to-white dark:from-zinc-800 dark:to-zinc-900 -z-10" />
+
+                                {product.badge && (
+                                    <Badge className="absolute top-6 right-6 text-sm py-1.5 px-4 bg-primary text-white z-10 shadow-lg">
+                                        {product.badge}
+                                    </Badge>
+                                )}
+
                                 {product.image ? (
                                     <img
                                         src={product.image}
                                         alt={product.name}
-                                        className="w-full h-auto object-cover aspect-[4/3] group-hover:scale-105 transition-transform duration-500"
+                                        className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal transform group-hover:scale-105 transition-transform duration-700"
                                     />
                                 ) : (
-                                    <div className="aspect-[4/3] bg-muted flex items-center justify-center">
-                                        <Factory className="h-24 w-24 text-muted-foreground/30" />
+                                    <Factory className="h-32 w-32 text-muted-foreground/20" />
+                                )}
+                            </motion.div>
+
+                            {/* Thumbnail Gallery (Placeholder for future expansion) */}
+                            <div className="grid grid-cols-4 gap-4">
+                                {[1, 2, 3, 4].map((i) => (
+                                    <div key={i} className={`aspect-square rounded-lg border-2 ${i === 1 ? 'border-primary bg-primary/5' : 'border-transparent bg-muted/50'} flex items-center justify-center cursor-pointer hover:bg-muted transition-colors`}>
+                                        {product.image ? (
+                                            <img src={product.image} className="w-full h-full object-contain p-2 mix-blend-multiply dark:mix-blend-normal opacity-70" alt="" />
+                                        ) : (
+                                            <Factory className="h-6 w-6 text-muted-foreground/30" />
+                                        )}
                                     </div>
-                                )}
-                                {product.badge && (
-                                    <Badge className="absolute top-4 right-4 text-sm py-1 px-3">
-                                        {product.badge}
-                                    </Badge>
-                                )}
-                            </div>
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                            className="space-y-6"
-                        >
-                            <div>
-                                <Badge variant="outline" className="mb-3 uppercase tracking-wider text-xs">
-                                    {product.category}
-                                </Badge>
-                                <h1 className="font-heading text-4xl font-bold text-foreground mb-4">
-                                    {product.name}
-                                </h1>
-                                <p className="text-lg text-muted-foreground leading-relaxed">
-                                    {product.description}
-                                </p>
-                            </div>
-
-                            <div className="grid sm:grid-cols-2 gap-4 py-6 border-y">
-                                <div>
-                                    <h3 className="font-semibold mb-2 text-sm uppercase tracking-wide text-muted-foreground">Specifications</h3>
-                                    <ul className="space-y-2">
-                                        <li className="flex justify-between text-sm">
-                                            <span>Gauge Range:</span>
-                                            <span className="font-medium text-foreground">{product.gaugeRange}</span>
-                                        </li>
-                                        <li className="flex justify-between text-sm">
-                                            <span>Material:</span>
-                                            <span className="font-medium text-foreground">{product.material}</span>
-                                        </li>
-                                        <li className="flex justify-between text-sm">
-                                            <span>Coating:</span>
-                                            <span className="font-medium text-foreground">{product.coating}</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h3 className="font-semibold mb-2 text-sm uppercase tracking-wide text-muted-foreground">Application</h3>
-                                    <p className="text-sm font-medium text-foreground">{product.application}</p>
-                                </div>
-                            </div>
-
-                            <div className="flex flex-wrap gap-2">
-                                {product.features.map((feature) => (
-                                    <Badge key={feature} variant="secondary" className="px-3 py-1">
-                                        <CheckCircle className="w-3 h-3 mr-1 text-primary" />
-                                        {feature}
-                                    </Badge>
                                 ))}
                             </div>
-
-                            <div className="pt-4">
-                                <Link href="/contact">
-                                    <Button size="lg" className="w-full sm:w-auto gap-2">
-                                        Request Quote / Inquiry
-                                        <ArrowRight className="h-4 w-4" />
-                                    </Button>
-                                </Link>
-                                <p className="text-xs text-muted-foreground mt-3 text-center sm:text-left">
-                                    Contact us for bulk orders and custom specifications.
-                                </p>
-                            </div>
-                        </motion.div>
+                        </div>
                     </div>
-                </div>
-            </section>
 
-            <section className="py-16 bg-background">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    {/* Right Column: Product Details */}
                     <motion.div
-                        initial="initial"
-                        whileInView="animate"
-                        viewport={{ once: true }}
-                        variants={stagger}
-                        className="grid md:grid-cols-3 gap-8"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        className="space-y-8"
                     >
-                        <motion.div variants={fadeInUp}>
-                            <Card className="h-full border-0 shadow-sm bg-muted/20">
-                                <CardContent className="p-6 flex flex-col items-center text-center">
-                                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                                        <Shield className="h-6 w-6 text-primary" />
-                                    </div>
-                                    <h3 className="font-semibold mb-2">Quality Guaranteed</h3>
-                                    <p className="text-sm text-muted-foreground">
-                                        Rigorous quality control ensures every needle meets international standards.
-                                    </p>
-                                </CardContent>
-                            </Card>
-                        </motion.div>
-                        <motion.div variants={fadeInUp}>
-                            <Card className="h-full border-0 shadow-sm bg-muted/20">
-                                <CardContent className="p-6 flex flex-col items-center text-center">
-                                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                                        <Zap className="h-6 w-6 text-primary" />
-                                    </div>
-                                    <h3 className="font-semibold mb-2">High Performance</h3>
-                                    <p className="text-sm text-muted-foreground">
-                                        Engineered for durability and consistent performance in high-speed machines.
-                                    </p>
-                                </CardContent>
-                            </Card>
-                        </motion.div>
-                        <motion.div variants={fadeInUp}>
-                            <Card className="h-full border-0 shadow-sm bg-muted/20">
-                                <CardContent className="p-6 flex flex-col items-center text-center">
-                                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                                        <Factory className="h-6 w-6 text-primary" />
-                                    </div>
-                                    <h3 className="font-semibold mb-2">Custom Solutions</h3>
-                                    <p className="text-sm text-muted-foreground">
-                                        Available in various specifications to meet your specific manufacturing needs.
-                                    </p>
-                                </CardContent>
-                            </Card>
-                        </motion.div>
+                        <div>
+                            <div className="flex items-center gap-3 mb-4">
+                                <Badge variant="outline" className="uppercase tracking-widest text-xs font-semibold px-3 py-1">
+                                    {product.category}
+                                </Badge>
+                                {product.gaugeRange && (
+                                    <span className="text-sm font-medium text-muted-foreground px-2 border-l border-border">
+                                        {product.gaugeRange}
+                                    </span>
+                                )}
+                            </div>
+
+                            <h1 className="font-heading text-4xl sm:text-5xl font-bold text-foreground mb-6 leading-tight">
+                                {product.name}
+                            </h1>
+
+                            <p className="text-lg text-muted-foreground leading-relaxed">
+                                {product.description}
+                            </p>
+                        </div>
+
+                        <Separator />
+
+                        {/* Specifications */}
+                        <div className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
+                            <div>
+                                <h3 className="font-semibold text-sm uppercase tracking-wide text-primary mb-4">Technical Specs</h3>
+                                <ul className="space-y-3">
+                                    <li className="flex justify-between items-center py-2 border-b border-border/50">
+                                        <span className="text-muted-foreground text-sm">Gauge</span>
+                                        <span className="font-medium">{product.gaugeRange}</span>
+                                    </li>
+                                    <li className="flex justify-between items-center py-2 border-b border-border/50">
+                                        <span className="text-muted-foreground text-sm">Material</span>
+                                        <span className="font-medium">{product.material}</span>
+                                    </li>
+                                    <li className="flex justify-between items-center py-2 border-b border-border/50">
+                                        <span className="text-muted-foreground text-sm">Coating</span>
+                                        <span className="font-medium">{product.coating}</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3 className="font-semibold text-sm uppercase tracking-wide text-primary mb-4">Features</h3>
+                                <div className="space-y-3">
+                                    {product.features.map((feature) => (
+                                        <div key={feature} className="flex items-start gap-3">
+                                            <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 shrink-0" />
+                                            <span className="text-sm">{feature}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="bg-muted/30 p-6 rounded-xl border border-border/50">
+                            <h3 className="font-semibold mb-2 flex items-center gap-2">
+                                <Shield className="h-4 w-4 text-primary" />
+                                Application
+                            </h3>
+                            <p className="text-sm text-muted-foreground">
+                                {product.application}
+                            </p>
+                        </div>
+
+                        <div className="pt-6 space-y-4">
+                            <Link href="/contact">
+                                <Button size="lg" className="w-full sm:w-auto h-14 px-8 text-lg font-semibold shadow-xl shadow-primary/20 hover:shadow-primary/30 transition-all gap-2">
+                                    <Mail className="h-5 w-5" />
+                                    Request Quote / Inquiry
+                                </Button>
+                            </Link>
+                            <p className="text-xs text-muted-foreground text-center sm:text-left pl-1">
+                                Typical response time: Within 24 hours
+                            </p>
+                        </div>
                     </motion.div>
                 </div>
-            </section>
+            </div>
+
+            {/* Related Products */}
+            {relatedProducts.length > 0 && (
+                <section className="py-20 bg-muted/20 border-t mt-12">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <h2 className="text-2xl font-bold mb-8 font-heading">Related Products</h2>
+                        <div className="grid md:grid-cols-3 gap-6">
+                            {relatedProducts.map((p) => (
+                                <motion.div key={p.id} variants={fadeInUp} initial="initial" whileInView="animate" viewport={{ once: true }}>
+                                    <Link href={`/products/${p.id}`}>
+                                        <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full border-0 bg-background">
+                                            <CardContent className="p-4 flex gap-4 items-center h-full">
+                                                <div className="h-20 w-20 bg-muted rounded-lg flex items-center justify-center shrink-0">
+                                                    {p.image ? (
+                                                        <img src={p.image} className="w-full h-full object-contain p-2" alt={p.name} />
+                                                    ) : (
+                                                        <Factory className="h-8 w-8 text-muted-foreground/30" />
+                                                    )}
+                                                </div>
+                                                <div>
+                                                    <h4 className="font-semibold line-clamp-1">{p.name}</h4>
+                                                    <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{p.description}</p>
+                                                </div>
+                                            </CardContent>
+                                        </Card>
+                                    </Link>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
         </div>
     );
 }
