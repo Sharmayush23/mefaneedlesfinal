@@ -1,4 +1,5 @@
 import { useParams, Link } from "wouter";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Factory, CheckCircle, Shield, Zap, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -21,6 +22,13 @@ export default function ProductDetailPage() {
         .filter((p) => p.category === product?.category && p.id !== product?.id)
         .slice(0, 3);
 
+    const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+    // Reset selected image when product changes (e.g. from related products)
+    useEffect(() => {
+        setSelectedImageIndex(0);
+    }, [id]);
+
     if (!product) {
         return (
             <div className="min-h-screen pt-20 flex flex-col items-center justify-center text-center px-4">
@@ -37,6 +45,11 @@ export default function ProductDetailPage() {
             </div>
         );
     }
+
+    // Fallback if no images array (shouldn't happen with new logic, but safe to have)
+    const images = product.images && product.images.length > 0 ? product.images : [product.image];
+    // Ensure we don't crash if even product.image is missing (though typings say it's there)
+    const currentImage = images[selectedImageIndex] || product.image;
 
     return (
         <div className="pt-20 bg-background min-h-screen">
@@ -58,8 +71,10 @@ export default function ProductDetailPage() {
                     <div className="relative">
                         <div className="lg:sticky lg:top-32 space-y-6">
                             <motion.div
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
+                                key={currentImage} // Animate when image changes
+                                initial={{ opacity: 0.5 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.3 }}
                                 className="bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl border border-border/50 relative aspect-[4/3] flex items-center justify-center p-8 group"
                             >
                                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-100 to-white dark:from-zinc-800 dark:to-zinc-900 -z-10" />
@@ -70,9 +85,9 @@ export default function ProductDetailPage() {
                                     </Badge>
                                 )}
 
-                                {product.image ? (
+                                {currentImage ? (
                                     <img
-                                        src={product.image}
+                                        src={currentImage}
                                         alt={product.name}
                                         className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal transform group-hover:scale-105 transition-transform duration-700"
                                     />
@@ -81,18 +96,20 @@ export default function ProductDetailPage() {
                                 )}
                             </motion.div>
 
-                            {/* Thumbnail Gallery (Placeholder for future expansion) */}
-                            <div className="grid grid-cols-4 gap-4">
-                                {[1, 2, 3, 4].map((i) => (
-                                    <div key={i} className={`aspect-square rounded-lg border-2 ${i === 1 ? 'border-primary bg-primary/5' : 'border-transparent bg-muted/50'} flex items-center justify-center cursor-pointer hover:bg-muted transition-colors`}>
-                                        {product.image ? (
-                                            <img src={product.image} className="w-full h-full object-contain p-2 mix-blend-multiply dark:mix-blend-normal opacity-70" alt="" />
-                                        ) : (
-                                            <Factory className="h-6 w-6 text-muted-foreground/30" />
-                                        )}
-                                    </div>
-                                ))}
-                            </div>
+                            {/* Thumbnail Gallery */}
+                            {images.length > 1 && (
+                                <div className="grid grid-cols-4 gap-4">
+                                    {images.map((img, i) => (
+                                        <div
+                                            key={i}
+                                            onClick={() => setSelectedImageIndex(i)}
+                                            className={`aspect-square rounded-lg border-2 ${selectedImageIndex === i ? 'border-primary ring-2 ring-primary/20 bg-primary/5' : 'border-transparent bg-muted/50 hover:bg-muted'} flex items-center justify-center cursor-pointer transition-all duration-200`}
+                                        >
+                                            <img src={img} className="w-full h-full object-contain p-2 mix-blend-multiply dark:mix-blend-normal" alt={`View ${i + 1}`} />
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
 

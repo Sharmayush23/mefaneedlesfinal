@@ -10,6 +10,7 @@ export interface Product {
     application: string;
     badge?: string;
     image: string;
+    images?: string[];
 }
 
 // Helper to deduce category from name
@@ -39,7 +40,7 @@ export const products: Product[] = [];
 
 // Extract unique folder names from the image paths
 // Path format: /src/assets/products/FOLDER_NAME/image.ext
-const folderToImageMap: Record<string, string> = {};
+const folderToImagesMap: Record<string, string[]> = {};
 
 Object.keys(productImages).forEach((path) => {
     // path is like /src/assets/products/2.5G/IMG...
@@ -51,15 +52,17 @@ Object.keys(productImages).forEach((path) => {
         // There is a folder: .../products/FOLDER/image.ext
         const folderName = parts[productsIndex + 1];
 
-        // Store the first image found for this folder
-        if (!folderToImageMap[folderName]) {
-            folderToImageMap[folderName] = productImages[path];
+        // Initialize array if not exists
+        if (!folderToImagesMap[folderName]) {
+            folderToImagesMap[folderName] = [];
         }
+        // Add image to the list
+        folderToImagesMap[folderName].push(productImages[path]);
     }
 });
 
 // Create products from folders
-const sortedFolders = Object.keys(folderToImageMap).sort();
+const sortedFolders = Object.keys(folderToImagesMap).sort();
 
 sortedFolders.forEach((folder) => {
     products.push({
@@ -73,7 +76,8 @@ sortedFolders.forEach((folder) => {
         coating: "Chrome Plated",
         application: "Industrial Knitting",
         // badge: undefined, // Badges removed
-        image: folderToImageMap[folder]
+        image: folderToImagesMap[folder][0], // Keep main image as first one
+        images: folderToImagesMap[folder] // Add all images
     });
 });
 
