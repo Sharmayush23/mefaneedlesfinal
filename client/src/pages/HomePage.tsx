@@ -17,18 +17,21 @@ const products = [
     title: "Circular Knitting Needles",
     description: "High-precision needles for circular knitting machines ensuring uniform loop formation.",
     category: "Circular Knitting",
+    queryCategory: "circular",
     image: "/assets/products/3cfc0363cc030 (1).png",
   },
   {
     title: "Hosiery Needles",
     description: "Premium hosiery needles designed for durability and consistent performance.",
     category: "Hosiery",
+    queryCategory: "hosiery",
     image: "/assets/products/c51ae525a34e2.png",
   },
   {
     title: "Flat Knitting Needles",
     description: "Precision flat needles for power-flat and hand-flat knitting applications.",
     category: "Flat Knitting",
+    queryCategory: "flat",
     image: "/assets/products/c789b5d6c6ff8.png",
   },
 ];
@@ -242,37 +245,39 @@ export default function HomePage() {
           >
             {products.map((product, index) => (
               <motion.div key={product.title} variants={fadeInUp}>
-                <Card className="group h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-md">
-                  <CardContent className="p-0">
-                    <div className="h-48 bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent" />
-                      <div className="w-full h-full flex items-center justify-center">
-                        {product.image ? (
-                          <img
-                            src={product.image}
-                            alt={product.title}
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center">
-                            <Factory className="h-12 w-12 text-primary/60" />
-                          </div>
-                        )}
+                <Link href={`/products?category=${product.queryCategory}`}>
+                  <Card className="group h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-md cursor-pointer">
+                    <CardContent className="p-0">
+                      <div className="h-48 bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent" />
+                        <div className="w-full h-full flex items-center justify-center">
+                          {product.image ? (
+                            <img
+                              src={product.image}
+                              alt={product.title}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center">
+                              <Factory className="h-12 w-12 text-primary/60" />
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                    <div className="p-6">
-                      <p className="text-xs text-primary font-semibold uppercase tracking-wider mb-2">
-                        {product.category}
-                      </p>
-                      <h3 className="font-heading text-xl font-semibold mb-3">
-                        {product.title}
-                      </h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        {product.description}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
+                      <div className="p-6">
+                        <p className="text-xs text-primary font-semibold uppercase tracking-wider mb-2">
+                          {product.category}
+                        </p>
+                        <h3 className="font-heading text-xl font-semibold mb-3">
+                          {product.title}
+                        </h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {product.description}
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
               </motion.div>
             ))}
           </motion.div>

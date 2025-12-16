@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Filter, Factory, ArrowRight, X } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -31,7 +31,11 @@ const stagger = {
 };
 
 export default function ProductsPage() {
-  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [location] = useLocation();
+  const searchParams = new URLSearchParams(window.location.search);
+  const initialCategory = searchParams.get("category") || "all";
+
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredProducts = useMemo(() => {
@@ -80,8 +84,8 @@ export default function ProductsPage() {
                   key={cat.value}
                   onClick={() => setSelectedCategory(cat.value)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${selectedCategory === cat.value
-                      ? "bg-primary text-primary-foreground shadow-md"
-                      : "bg-muted text-muted-foreground hover:bg-muted/80"
+                    ? "bg-primary text-primary-foreground shadow-md"
+                    : "bg-muted text-muted-foreground hover:bg-muted/80"
                     }`}
                 >
                   {cat.label}
