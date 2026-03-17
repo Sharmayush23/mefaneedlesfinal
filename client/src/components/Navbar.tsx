@@ -33,8 +33,8 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-        ? "bg-white/60 backdrop-blur-2xl border-b border-white/20 shadow-sm"
-        : "bg-white/30 backdrop-blur-xl border-b border-white/10"
+        ? "bg-white/95 backdrop-blur-md border-b border-border shadow-sm"
+        : "bg-white/50 backdrop-blur-sm border-b border-transparent"
         }`}
       data-testid="navbar"
     >
@@ -68,11 +68,11 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:block">
-            <div className="flex flex-col items-end text-xs font-medium text-foreground/80 leading-tight">
-              <a href="tel:+919999999999" className="hover:text-primary transition-colors" data-testid="link-phone-header">
+            <div className="flex flex-col items-end text-xs font-medium text-foreground/60 leading-tight">
+              <a href="tel:+919814144368" className="hover:text-primary transition-colors" data-testid="link-phone-header">
                 +91 9814144368
               </a>
-              <a href="mailto:info@sachkhandmustardoil.com" className="hover:text-primary transition-colors" data-testid="link-email-header">
+              <a href="mailto:info@sachkhandmustardoil.com" className="hover:text-secondary transition-colors" data-testid="link-email-header">
                 info@sachkhandmustardoil.com
               </a>
             </div>
@@ -81,7 +81,7 @@ export default function Navbar() {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden"
+            className="md:hidden text-foreground hover:bg-muted"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
             data-testid="button-menu-toggle"
@@ -92,14 +92,14 @@ export default function Navbar() {
       </div>
 
       {isOpen && (
-        <div className="md:hidden absolute top-20 left-0 right-0 bg-white border-t shadow-lg" data-testid="mobile-menu">
+        <div className="md:hidden absolute top-20 left-0 right-0 bg-white border-t border-border shadow-lg" data-testid="mobile-menu">
           <div className="px-4 py-6 space-y-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={`block py-3 px-4 rounded-lg font-medium transition-colors ${location === link.href
-                  ? "bg-primary/10 text-primary"
+                  ? "bg-primary/5 text-primary"
                   : "text-foreground/80 hover:bg-muted"
                   }`}
                 data-testid={`link-mobile-${link.label.toLowerCase().replace(/\s/g, "-")}`}
@@ -108,11 +108,11 @@ export default function Navbar() {
               </Link>
             ))}
             <div className="pt-4">
-              <div className="flex flex-col gap-2 pt-2 border-t mt-2">
-                <a href="tel:+919999999999" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors text-center py-2" data-testid="link-phone-mobile">
+              <div className="flex flex-col gap-2 pt-2 border-t border-border mt-2">
+                <a href="tel:+919814144368" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors text-center py-2" data-testid="link-phone-mobile">
                   +91 9814144368
                 </a>
-                <a href="mailto:info@sachkhandmustardoil.com" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors text-center py-2" data-testid="link-email-mobile">
+                <a href="mailto:info@sachkhandmustardoil.com" className="text-sm font-medium text-foreground/80 hover:text-secondary transition-colors text-center py-2" data-testid="link-email-mobile">
                   info@sachkhandmustardoil.com
                 </a>
               </div>

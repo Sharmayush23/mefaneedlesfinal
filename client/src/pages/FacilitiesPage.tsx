@@ -75,12 +75,12 @@ const stagger = {
 export default function FacilitiesPage() {
   return (
     <div className="pt-20">
-      <section className="relative min-h-[50vh] flex items-center bg-[#1A1A1A] overflow-hidden">
+      <section className="relative min-h-[50vh] flex items-center bg-slate-50 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
             }}
           />
         </div>
@@ -94,10 +94,10 @@ export default function FacilitiesPage() {
             <p className="text-accent font-semibold uppercase tracking-wider text-sm mb-4" data-testid="text-facilities-subtitle">
               Our Production Process
             </p>
-            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6" data-testid="text-facilities-title">
+            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6" data-testid="text-facilities-title">
               State-of-the-Art Purity
             </h1>
-            <p className="text-white/70 text-lg max-w-2xl mx-auto" data-testid="text-facilities-description">
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto" data-testid="text-facilities-description">
               Step into the world of traditional excellence. Where ancient wisdom meets modern hygiene to deliver 100% pure mustard oil for your home.
             </p>
           </motion.div>
@@ -255,7 +255,7 @@ export default function FacilitiesPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-[#1A1A1A]">
+      <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0 }}
@@ -265,19 +265,19 @@ export default function FacilitiesPage() {
           >
             <div>
               <div className="text-4xl sm:text-5xl font-bold text-accent">100%</div>
-              <div className="text-white/60 mt-2">Pure Purity</div>
+              <div className="text-muted-foreground mt-2">Pure Purity</div>
             </div>
             <div>
               <div className="text-4xl sm:text-5xl font-bold text-accent">45+</div>
-              <div className="text-white/60 mt-2">Years of Legacy</div>
+              <div className="text-muted-foreground mt-2">Years of Legacy</div>
             </div>
             <div>
               <div className="text-4xl sm:text-5xl font-bold text-accent">Trusted</div>
-              <div className="text-white/60 mt-2">By Thousands</div>
+              <div className="text-muted-foreground mt-2">By Thousands</div>
             </div>
             <div>
               <div className="text-4xl sm:text-5xl font-bold text-accent">Natural</div>
-              <div className="text-white/60 mt-2">Nutrients Intact</div>
+              <div className="text-muted-foreground mt-2">Nutrients Intact</div>
             </div>
           </motion.div>
         </div>

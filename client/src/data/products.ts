@@ -31,7 +31,7 @@ function deduceDescription(name: string): string {
 
 // Automatically import all images from the assets/products directory
 // Use absolute path from Vite root (client directory)
-import newProduct1 from "@/assets/products/new_product_1.png";
+import newProduct1 from "@/assets/products/sachkhand_bottle_hero.png";
 import newProduct2 from "@/assets/products/new_product_2.png";
 import newProduct3 from "@/assets/products/new_product_3.png";
 

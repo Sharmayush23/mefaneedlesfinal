@@ -26,12 +26,12 @@ export default function TimelinePage() {
 
   return (
     <div className="pt-20">
-      <section className="relative min-h-[60vh] flex items-center bg-[#1A1A1A] overflow-hidden">
+      <section className="relative min-h-[60vh] flex items-center bg-slate-50 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
             }}
           />
         </div>
@@ -46,15 +46,15 @@ export default function TimelinePage() {
               <p className="text-accent font-semibold uppercase tracking-wider text-sm mb-4" data-testid="text-timeline-subtitle">
                 Our Purity Journey
               </p>
-              <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6" data-testid="text-timeline-title">
+              <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6" data-testid="text-timeline-title">
                 Sachkhand Heritage
               </h1>
-              <p className="text-white/70 text-lg mb-8" data-testid="text-timeline-description">
+              <p className="text-muted-foreground text-lg mb-8" data-testid="text-timeline-description">
                 Over 45 years of unyielding purity. Explore the milestones that made Sachkhand the most trusted name for high-quality, pure mustard oil.
               </p>
               <div className="flex items-center gap-4">
                 <Calendar className="h-6 w-6 text-accent" />
-                <span className="text-white/80" data-testid="text-timeline-dates">1968 - Present</span>
+                <span className="text-foreground/70" data-testid="text-timeline-dates">1968 - Present</span>
               </div>
             </motion.div>
 
@@ -67,7 +67,7 @@ export default function TimelinePage() {
               <div className="relative">
                 <div className="absolute -inset-4 bg-primary/20 rounded-2xl blur-2xl" />
                 <img
-                  src="/src/assets/products/new_product_1.png"
+                  src="/src/assets/products/sachkhand_bottle_hero.png"
                   alt="Pure Purity at Sachkhand"
                   className="relative w-full max-w-md mx-auto rounded-xl shadow-2xl"
                   data-testid="img-founder-timeline"
@@ -162,7 +162,7 @@ export default function TimelinePage() {
         </div>
       </section>
 
-      <section className="py-16 bg-[#1A1A1A]">
+      <section className="py-16 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -170,28 +170,28 @@ export default function TimelinePage() {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white" data-testid="text-legacy-title">
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-foreground" data-testid="text-legacy-title">
               Continuing the Purity
             </h2>
-            <p className="text-white/70 text-lg max-w-2xl mx-auto" data-testid="text-legacy-description">
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto" data-testid="text-legacy-description">
               Today, Sachkhand Mustard Oil continues to honor its roots by delivering the same high-purity quality that families have trusted for decades.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8">
               <div className="text-center">
                 <div className="text-3xl font-bold text-accent" data-testid="stat-years">45+</div>
-                <div className="text-sm text-white/60 mt-1">Years</div>
+                <div className="text-sm text-muted-foreground mt-1">Years</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-accent" data-testid="stat-families">10k+</div>
-                <div className="text-sm text-white/60 mt-1">Families</div>
+                <div className="text-sm text-muted-foreground mt-1">Families</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-accent" data-testid="stat-purity">100%</div>
-                <div className="text-sm text-white/60 mt-1">Pure</div>
+                <div className="text-sm text-muted-foreground mt-1">Pure</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-accent" data-testid="stat-quality">Top</div>
-                <div className="text-sm text-white/60 mt-1">Choice</div>
+                <div className="text-sm text-muted-foreground mt-1">Choice</div>
               </div>
             </div>
           </motion.div>

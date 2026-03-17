@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Award, Globe, CheckCircle, Factory, Users, Zap, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import newProduct1 from "@/assets/products/new_product_1.png";
+import sachkhandBottleHero from "@/assets/products/sachkhand_bottle_hero.png";
 import newProduct2 from "@/assets/products/new_product_2.png";
 import newProduct3 from "@/assets/products/new_product_3.png";
 
@@ -20,7 +20,7 @@ const products = [
     description: "Traditionally cold-pressed to preserve natural antioxidants and its authentic pungent taste.",
     category: "Purity First",
     queryCategory: "kachi-ghani",
-    image: newProduct1,
+    image: sachkhandBottleHero,
   },
   {
     title: "Cooking Essentials",
@@ -78,15 +78,19 @@ const stagger = {
 export default function HomePage() {
   return (
     <div className="pt-20">
-      <section className="relative min-h-[90vh] flex items-center bg-[#1A1A1A] overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
+      <section className="relative min-h-[90vh] flex items-center bg-slate-50 overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
             }}
           />
         </div>
+        
+        {/* Subtle Brand Gradients */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -96,31 +100,31 @@ export default function HomePage() {
               transition={{ duration: 0.6 }}
               className="space-y-8"
             >
-              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-white/80 text-sm" data-testid="badge-hero">
+              <div className="inline-flex items-center gap-2 bg-primary/5 px-4 py-2 rounded-full text-foreground/70 text-sm" data-testid="badge-hero">
                 <Award className="h-4 w-4 text-accent" />
                 <span>Khanna's Most Trusted Purity Heritage</span>
               </div>
 
-              <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight" data-testid="text-hero-title">
+               <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight" data-testid="text-hero-title">
                 The Essence of Pure{" "}
                 <span className="text-primary">
                   Tradition
                 </span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-white/70 leading-relaxed max-w-xl" data-testid="text-hero-description">
+              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-xl" data-testid="text-hero-description">
                 Elevating the standards of purity in every drop. Trusted by families for over 45 years for our cold-pressed, high-quality mustard oil.
               </p>
 
               <div className="flex flex-wrap gap-4">
                 <Link href="/products">
-                  <Button size="lg" className="gap-2" data-testid="button-explore-products">
+                  <Button size="lg" variant="cta" className="gap-2" data-testid="button-explore-products">
                     Explore Products
                     <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
                 <Link href="/about">
-                  <Button size="lg" variant="outline" className="bg-white/5 border-white/20 text-white hover:bg-white/10" data-testid="button-our-story">
+                  <Button size="lg" variant="outline" className="bg-white border-border text-foreground hover:bg-slate-50" data-testid="button-our-story">
                     Our Story
                   </Button>
                 </Link>
@@ -143,10 +147,10 @@ export default function HomePage() {
                     <div className="text-3xl sm:text-4xl font-bold text-primary">
                       {stat.value}
                     </div>
-                    <div className="text-xs text-white/50 uppercase tracking-wider mt-1">
+                    <div className="text-xs text-muted-foreground uppercase tracking-wider mt-1">
                       {stat.label}
                     </div>
-                    <div className="text-xs text-white/30 mt-0.5">
+                    <div className="text-xs text-muted-foreground/60 mt-0.5">
                       {stat.description}
                     </div>
                   </motion.div>
@@ -161,12 +165,12 @@ export default function HomePage() {
               className="relative hidden lg:block"
             >
               <div className="relative">
-                <div className="absolute -inset-4 bg-primary/20 rounded-2xl blur-2xl" />
-                <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                <div className="absolute -inset-4 bg-primary/5 rounded-2xl blur-2xl" />
+                <div className="relative bg-white rounded-2xl p-3 border border-border shadow-xl">
                   <img
-                    src={newProduct1}
+                    src={sachkhandBottleHero}
                     alt="Sachkhand Pure Mustard Oil"
-                    className="w-full h-auto rounded-xl shadow-2xl"
+                    className="w-full aspect-square object-cover rounded-xl shadow-2xl"
                   />
                   <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md rounded-lg p-4">
                     <p className="font-heading font-semibold text-white">
@@ -184,22 +188,22 @@ export default function HomePage() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.6 }}
-                className="absolute -top-4 -right-4 bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20"
+                className="absolute -top-4 -right-4 bg-white rounded-xl p-4 border border-border shadow-lg"
               >
-                <Globe className="h-8 w-8 text-accent mb-2" />
-                <p className="text-white font-semibold">50+</p>
-                <p className="text-xs text-white/60">Countries Served</p>
+                <Globe className="h-8 w-8 text-secondary mb-2" />
+                <p className="text-foreground font-semibold">50+</p>
+                <p className="text-xs text-muted-foreground">Countries Served</p>
               </motion.div>
 
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.8 }}
-                className="absolute -bottom-4 -left-4 bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20"
+                className="absolute -bottom-4 -left-4 bg-white rounded-xl p-4 border border-border shadow-lg"
               >
                 <CheckCircle className="h-8 w-8 text-accent mb-2" />
-                <p className="text-white font-semibold">ISO Certified</p>
-                <p className="text-xs text-white/60">Quality Standards</p>
+                <p className="text-foreground font-semibold">ISO Certified</p>
+                <p className="text-xs text-muted-foreground">Quality Standards</p>
               </motion.div>
             </motion.div>
           </div>
@@ -354,7 +358,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-20 bg-[#1A1A1A] text-white">
+      <section className="py-20 bg-slate-50 text-foreground">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -366,12 +370,12 @@ export default function HomePage() {
               Ready to Upgrade to{" "}
               <span className="text-accent">Authentic</span> Purity?
             </h2>
-            <p className="text-white/70 text-lg max-w-2xl mx-auto">
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               Switch to Sachkhand Mustard Oil today and experience the health and tradition of world-class oil production.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link href="/contact">
-                <Button size="lg" className="gap-2" data-testid="button-contact-us-cta">
+                <Button size="lg" variant="cta" className="gap-2" data-testid="button-contact-us-cta">
                   Contact Us
                   <ArrowRight className="h-4 w-4" />
                 </Button>
@@ -380,7 +384,7 @@ export default function HomePage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="bg-white/5 border-white/20 text-white hover:bg-white/10"
+                  className="bg-white border-border text-foreground hover:bg-slate-50"
                   data-testid="button-view-facilities"
                 >
                   View Facilities

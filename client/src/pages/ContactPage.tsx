@@ -101,12 +101,12 @@ export default function ContactPage() {
 
   return (
     <div className="pt-20">
-      <section className="relative min-h-[40vh] flex items-center bg-[#1A1A1A] overflow-hidden">
+      <section className="relative min-h-[40vh] flex items-center bg-slate-50 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
             }}
           />
         </div>
@@ -120,10 +120,10 @@ export default function ContactPage() {
             <p className="text-accent font-semibold uppercase tracking-wider text-sm mb-4" data-testid="text-contact-subtitle">
               Reach Out to Us
             </p>
-            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6" data-testid="text-contact-title">
+            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6" data-testid="text-contact-title">
               Let's Talk Purity
             </h1>
-            <p className="text-white/70 text-lg max-w-2xl mx-auto" data-testid="text-contact-description">
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto" data-testid="text-contact-description">
               Have questions about our Kachi Ghani oil or want to place a bulk order? Our team is here to help you bring health to your home.
             </p>
           </motion.div>
@@ -280,7 +280,7 @@ export default function ContactPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <Card className="h-full bg-[#1A1A1A] text-white border-0">
+              <Card className="h-full bg-slate-50 text-foreground border-border shadow-md">
                 <CardContent className="p-8">
                   <h2 className="font-heading text-2xl font-semibold mb-8" data-testid="text-info-title">
                     Contact Information
@@ -289,15 +289,15 @@ export default function ContactPage() {
                   <div className="space-y-8">
                     {contactInfo.map((info) => (
                       <div key={info.title} className="flex gap-4" data-testid={`info-${info.title.toLowerCase()}`}>
-                        <div className="w-12 h-12 rounded-lg bg-accent/20 flex items-center justify-center flex-shrink-0">
-                          <info.icon className="h-5 w-5 text-accent" />
+                        <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                          <info.icon className="h-5 w-5 text-primary" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-accent mb-1">
+                          <h3 className="font-semibold text-primary mb-1">
                             {info.title}
                           </h3>
                           {info.details.map((detail) => (
-                            <p key={detail} className="text-white/70 text-sm">
+                            <p key={detail} className="text-muted-foreground text-sm">
                               {detail}
                             </p>
                           ))}
@@ -306,7 +306,7 @@ export default function ContactPage() {
                     ))}
                   </div>
 
-                  <div className="mt-12 pt-8 border-t border-white/10">
+                  <div className="mt-12 pt-8 border-t border-border">
                     <h3 className="font-semibold text-accent mb-4">Follow Us</h3>
                     <div className="flex gap-4">
                       {socialLinks.map((social) => (
@@ -315,7 +315,7 @@ export default function ContactPage() {
                           href={social.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors"
+                          className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-sm"
                           aria-label={social.label}
                           data-testid={`link-social-${social.label.toLowerCase()}`}
                         >
@@ -325,8 +325,8 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="mt-8 p-6 rounded-xl bg-white/5">
-                    <p className="text-white/80 text-sm leading-relaxed" data-testid="text-quick-response">
+                  <div className="mt-8 p-6 rounded-xl bg-primary/5 border border-primary/10">
+                    <p className="text-foreground/80 text-sm leading-relaxed" data-testid="text-quick-response">
                       <strong className="text-accent">Quick Response:</strong> We
                       typically respond to all inquiries within 24 hours during
                       business days. For urgent matters, please call us directly.
