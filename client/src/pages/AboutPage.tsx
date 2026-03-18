@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
 import { Award, Users, Target, Eye, Shield, Zap, HeartHandshake, CheckCircle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import founderImage from "@/assets/founder.jpg";
 
 const stats = [
   { value: "45+", label: "Years", description: "Legacy of Purity" },
@@ -137,79 +135,6 @@ export default function AboutPage() {
                     Hygienic Extraction
                   </p>
                   <p className="text-white/70">Our Traditional Method</p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Founder's Legacy Section */}
-      <section className="py-24 bg-slate-900 text-white overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="lg:col-span-4"
-            >
-              <div className="relative group">
-                <div className="absolute -inset-2 bg-gradient-to-r from-primary to-accent rounded-2xl blur opacity-30 group-hover:opacity-50 transition-all" />
-                <img 
-                  src={founderImage} 
-                  alt="Our Founder" 
-                  className="relative rounded-2xl grayscale hover:grayscale-0 transition-all duration-700 w-full aspect-[4/5] object-cover shadow-2xl"
-                />
-                <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-xl hidden md:block">
-                  <p className="text-slate-900 font-bold text-xl leading-none">50+</p>
-                  <p className="text-slate-500 text-[10px] uppercase tracking-widest font-bold mt-1">Years of Purity</p>
-                </div>
-              </div>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="lg:col-span-8 space-y-8"
-            >
-              <div className="space-y-4">
-                <Badge className="bg-primary/20 text-primary border-primary/20 hover:bg-primary/30 py-1 px-4">Our Legacy</Badge>
-                <h2 className="text-4xl sm:text-5xl font-bold font-heading">
-                  Honoring Our Founder's <span className="text-primary italic">Vision</span>
-                </h2>
-              </div>
-              
-              <div className="relative py-8">
-                <span className="text-8xl text-primary/20 absolute -top-4 -left-6 font-serif select-none">"</span>
-                <p className="text-2xl sm:text-3xl font-heading italic leading-relaxed relative z-10 text-slate-200">
-                  Purity is not just a standard we follow; it's the very soul of everything we produce. Our commitment is to the health of every home we touch.
-                </p>
-              </div>
-              
-              <div className="space-y-1">
-                <p className="text-xl font-bold font-heading">Founder & Visionary</p>
-                <p className="text-slate-400 uppercase tracking-widest text-sm font-semibold">Sachkhand Mustard Oil Heritage</p>
-              </div>
-              
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 pt-6 border-t border-white/10">
-                <div>
-                  <p className="text-primary font-bold text-2xl">Pioneer</p>
-                  <p className="text-slate-500 text-xs">Excellence</p>
-                </div>
-                <div>
-                  <p className="text-primary font-bold text-2xl">Integrity</p>
-                  <p className="text-slate-500 text-xs">Unwavering</p>
-                </div>
-                <div>
-                  <p className="text-primary font-bold text-2xl">Quality</p>
-                  <p className="text-slate-500 text-xs">Guaranteed</p>
-                </div>
-                <div>
-                  <p className="text-primary font-bold text-2xl">Trusted</p>
-                  <p className="text-slate-500 text-xs">Since 1968</p>
                 </div>
               </div>
             </motion.div>
