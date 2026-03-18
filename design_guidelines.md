@@ -1,14 +1,15 @@
-# MEFA Needles Design Guidelines
+# Sachkhand Mustard Oil Design Guidelines
 
 ## Design Approach
-**Reference-Based Approach**: Draw inspiration from professional B2B manufacturing websites like Bosch Industrial, Siemens, and modern SaaS products. Balance industrial credibility with contemporary web design.
+**Reference-Based Approach**: Draw inspiration from professional B2B manufacturing websites like Bosch Industrial, Siemens, and modern SaaS products. Balance industrial credibility with contemporary web design for a premium food brand.
 
 ## Brand Foundation
 
-**Colors** (specified by user, use as accent only in guidelines):
-- Primary: Red #E12531
-- Secondary: Orange #F6A942
-- Supporting: Dark grays, whites, industrial blues
+**Colors** (aligned with Sachkhand brand palette):
+- Primary: Red #D92121 (represents tradition and boldness)
+- Secondary: Blue #1E4BB5 (represents trust and health)
+- Accent: Green #2D7D32 (represents purity and natural origin)
+- Supporting: Dark grays, whites, and subtle textures
 
 **Typography Hierarchy**:
 - Headings: Poppins (700-800 weight) for strong, professional presence

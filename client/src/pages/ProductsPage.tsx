@@ -51,7 +51,7 @@ export default function ProductsPage() {
   return (
     <div className="pt-20 min-h-screen bg-background text-foreground">
       {/* Hero Section */}
-      <section className="relative h-[40vh] flex items-center justify-center bg-slate-50 overflow-hidden">
+      <section className="relative min-h-[50vh] flex items-center bg-slate-50 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div
             className="absolute inset-0 opacity-20"
@@ -60,18 +60,27 @@ export default function ProductsPage() {
             }}
           />
         </div>
+        
+        {/* Subtle Brand Gradients */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none" />
 
-        <div className="relative z-20 text-center max-w-4xl px-4">
+        <div className="relative z-20 text-center max-w-4xl mx-auto px-4 py-20">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.7 }}
+            className="space-y-6"
           >
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 tracking-tight">
-              Our Products
+            <p className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary font-semibold uppercase tracking-widest text-xs mb-2">
+              Our Purity Collections
+            </p>
+            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 tracking-tight font-heading leading-tight transition-all">
+              Pure Tradition in <br />
+              <span className="text-primary italic">Every Drop</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Pure tradition in every drop. Healthy oils for every kitchen and wellness need.
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Experience the authentic taste of Punjab. Chemical-free, nutrient-rich oils for every healthy kitchen and wellness need.
             </p>
           </motion.div>
         </div>

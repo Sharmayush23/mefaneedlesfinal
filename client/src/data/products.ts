@@ -32,8 +32,9 @@ function deduceDescription(name: string): string {
 // Automatically import all images from the assets/products directory
 // Use absolute path from Vite root (client directory)
 import newProduct1 from "@/assets/products/sachkhand_bottle_hero.png";
-import newProduct2 from "@/assets/products/new_product_2.png";
-import newProduct3 from "@/assets/products/new_product_3.png";
+import newProduct2 from "@/assets/products/sachkhand_yellow_bottle.png";
+import newProduct3 from "@/assets/products/sachkhand_jugs.png";
+import newProduct4 from "@/assets/products/new_product_3.png";
 
 // Hardcoded Sachkhand Mustard Oil Products
 export const products: Product[] = [
@@ -48,11 +49,12 @@ export const products: Product[] = [
         coating: "None (Pure Oil)",
         application: "Cooking & Preservation",
         image: newProduct1,
+        badge: "Bestseller",
     },
     {
         id: "sachkhand-yellow-mustard-2",
         name: "Sachkhand Yellow Mustard Oil",
-        category: "cooking-oil",
+        category: "cooking",
         description: "Mild and healthy yellow mustard oil, ideal for daily cooking and heart health.",
         features: ["Heart Healthy", "Low Absorption", "Zero Cholesterol", "Rich in Omega-3"],
         gaugeRange: "1L, 2L, 5L",
@@ -62,7 +64,19 @@ export const products: Product[] = [
         image: newProduct2,
     },
     {
-        id: "sachkhand-pure-hair-oil-3",
+        id: "sachkhand-bulk-jug-3",
+        name: "Sachkhand Bulk Purity Jug",
+        category: "preservation",
+        description: "Large format pure mustard oil for heavy kitchen use and traditional pickling.",
+        features: ["Bulk Value", "Easy Pouring", "Same Purity", "Tamper Proof"],
+        gaugeRange: "5L, 15L",
+        material: "Selected Seeds",
+        coating: "None (Pure Oil)",
+        application: "Heavy Cooking & Pickling",
+        image: newProduct3,
+    },
+    {
+        id: "sachkhand-pure-hair-oil-4",
         name: "Sachkhand Pure Hair Oil",
         category: "hair-care",
         description: "Traditional mustard oil for deep hair conditioning and scalp health. Promotes hair growth naturally.",
@@ -71,7 +85,7 @@ export const products: Product[] = [
         material: "Selected Seeds",
         coating: "None (Pure Oil)",
         application: "Hair & Body Massage",
-        image: newProduct3,
+        image: newProduct4,
     }
 ];
 
