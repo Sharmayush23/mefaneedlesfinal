@@ -110,7 +110,7 @@ export default function HomePage() {
                 The Essence of Pure{" "}
                 <span className="text-primary italic relative">
                   Tradition
-                  <span className="absolute -bottom-2 left-0 right-0 h-1 bg-accent/30 rounded-full blur-sm" />
+                  <span className="absolute -bottom-2 left-0 right-0 h-1 bg-primary/30 rounded-full blur-sm" />
                 </span>
               </h1>
 
@@ -190,11 +190,10 @@ export default function HomePage() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.6 }}
-                className="absolute -top-4 -right-4 bg-white rounded-xl p-4 border border-border shadow-lg"
+                className="absolute top-4 right-4 bg-green-500/90 backdrop-blur-md rounded-lg p-3 border border-white/20 shadow-xl z-20"
               >
-                <Globe className="h-8 w-8 text-secondary mb-2" />
-                <p className="text-foreground font-semibold">50+</p>
-                <p className="text-xs text-muted-foreground">Countries Served</p>
+                <p className="text-[10px] uppercase tracking-widest text-white/70 font-bold mb-1">Purity Score</p>
+                <p className="text-xl font-bold text-white leading-none">100%</p>
               </motion.div>
 
               <motion.div
@@ -254,8 +253,8 @@ export default function HomePage() {
                   <Card className="group h-full hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-0 shadow-lg cursor-pointer overflow-hidden">
                     <CardContent className="p-0">
                       <div className="h-48 bg-muted flex items-center justify-center relative overflow-hidden">
-                        <div className="absolute inset-0 bg-accent/5 group-hover:bg-accent/10 transition-colors" />
-                        <div className="absolute -bottom-12 -right-12 w-24 h-24 bg-accent/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
+                        <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors" />
+                        <div className="absolute -bottom-12 -right-12 w-24 h-24 bg-primary/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
                         <div className="w-full h-full flex items-center justify-center">
                           {product.image ? (
                             <img
@@ -344,10 +343,10 @@ export default function HomePage() {
               <motion.div key={value.title} variants={fadeInUp}>
                 <Card className="h-full border-0 shadow-md hover:shadow-lg transition-shadow">
                   <CardContent className="p-6 text-center group">
-                    <div className="w-14 h-14 rounded-xl bg-brand-gradient-green flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                    <div className="w-14 h-14 rounded-xl bg-primary flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
                       <value.icon className="h-7 w-7 text-white" />
                     </div>
-                    <h3 className="font-heading font-semibold text-lg mb-3 group-hover:text-accent transition-colors">
+                    <h3 className="font-heading font-semibold text-lg mb-3 group-hover:text-primary transition-colors">
                       {value.title}
                     </h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">

@@ -96,7 +96,7 @@ export default function ProductsPage() {
                 placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-muted/50 border-transparent focus:bg-background focus:border-accent/50 focus:ring-accent/20 transition-all shadow-sm"
+                className="pl-10 bg-muted/50 border-transparent focus:bg-background focus:border-primary/50 focus:ring-primary/20 transition-all shadow-sm"
               />
             </div>
           </div>

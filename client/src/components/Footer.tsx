@@ -25,30 +25,30 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-white border-t border-border text-foreground" data-testid="footer">
+    <footer className="bg-secondary text-white border-t border-white/5" data-testid="footer">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <img src="/src/assets/logo.png" alt="Sachkhand Logo" className="h-12 w-auto" />
-              <h3 className="font-heading text-2xl font-bold text-secondary">
+              <img src="/src/assets/logo.png" alt="Sachkhand Logo" className="h-12 w-auto brightness-0 invert" />
+              <h3 className="font-heading text-2xl font-bold text-white">
                 Sachkhand
               </h3>
             </div>
 
-            <p className="text-muted-foreground text-sm leading-relaxed">
+            <p className="text-white/60 text-sm leading-relaxed">
               Khanna's premier mustard oil brand, dedicated to purity and quality for over 45 years. Delivering the essence of health and tradition to your kitchen.
             </p>
           </div>
 
           <div>
-            <h4 className="font-heading font-semibold text-secondary mb-6 uppercase tracking-wider text-sm">Products</h4>
+            <h4 className="font-heading font-semibold text-primary mb-6 uppercase tracking-wider text-xs">Products</h4>
             <ul className="space-y-3">
               {productLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-muted-foreground hover:text-secondary transition-colors text-sm"
+                    className="text-white/50 hover:text-primary transition-colors text-sm"
                     data-testid={`link-footer-${link.label.toLowerCase().replace(/\s/g, "-")}`}
                   >
                     {link.label}
@@ -59,13 +59,13 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-heading font-semibold text-secondary mb-6 uppercase tracking-wider text-sm">Company</h4>
+            <h4 className="font-heading font-semibold text-primary mb-6 uppercase tracking-wider text-xs">Company</h4>
             <ul className="space-y-3">
               {companyLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-muted-foreground hover:text-secondary transition-colors text-sm"
+                    className="text-white/50 hover:text-primary transition-colors text-sm"
                     data-testid={`link-footer-${link.label.toLowerCase().replace(/\s/g, "-")}`}
                   >
                     {link.label}
@@ -76,30 +76,30 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-heading font-semibold text-secondary mb-6 uppercase tracking-wider text-sm">Contact</h4>
+            <h4 className="font-heading font-semibold text-primary mb-6 uppercase tracking-wider text-xs">Contact</h4>
             <ul className="space-y-4">
               <li>
                 <a
                   href="mailto:info@sachkhandmustardoil.com"
-                  className="flex items-center gap-3 text-muted-foreground hover:text-secondary transition-colors text-sm"
+                  className="flex items-center gap-3 text-white/50 hover:text-primary transition-colors text-sm"
                   data-testid="link-footer-email"
                 >
-                  <Mail className="h-4 w-4 text-secondary" />
+                  <Mail className="h-4 w-4 text-primary" />
                   info@sachkhandmustardoil.com
                 </a>
               </li>
               <li>
                 <a
                   href="tel:+919814144368"
-                  className="flex items-center gap-3 text-muted-foreground hover:text-secondary transition-colors text-sm"
+                  className="flex items-center gap-3 text-white/50 hover:text-primary transition-colors text-sm"
                   data-testid="link-footer-phone"
                 >
-                  <Phone className="h-4 w-4 text-secondary" />
+                  <Phone className="h-4 w-4 text-primary" />
                   +91 9814144368
                 </a>
               </li>
-              <li className="flex items-start gap-3 text-muted-foreground text-sm">
-                <MapPin className="h-4 w-4 text-secondary mt-0.5 flex-shrink-0" />
+              <li className="flex items-start gap-3 text-white/50 text-sm">
+                <MapPin className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
                 <span>
                   Paali Nagar, Guru Nanak Nagar<br />
                   Opposite Smart Store, Amloh Road<br />
@@ -115,7 +115,7 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-secondary hover:text-white transition-all shadow-sm"
+                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-sm border border-white/10"
                   aria-label={social.label}
                   data-testid={`link-social-${social.label.toLowerCase()}`}
                 >
@@ -126,8 +126,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-border mt-12 pt-8 text-center">
-          <p className="text-muted-foreground/60 text-sm">
+        <div className="border-t border-white/5 mt-12 pt-8 text-center">
+          <p className="text-white/30 text-sm">
             &copy; {new Date().getFullYear()} Sachkhand Mustard Oil. All Rights Reserved.
           </p>
         </div>

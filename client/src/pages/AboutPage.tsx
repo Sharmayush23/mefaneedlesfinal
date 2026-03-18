@@ -69,7 +69,7 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-accent font-semibold uppercase tracking-wider text-sm mb-4" data-testid="text-about-subtitle">
+            <p className="text-primary font-semibold uppercase tracking-wider text-sm mb-4" data-testid="text-about-subtitle">
               Our Purity Heritage
             </p>
             <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6" data-testid="text-about-title">
@@ -130,11 +130,11 @@ export default function AboutPage() {
                   alt="Pure Oil Extraction at Sachkhand"
                   className="w-full h-auto rounded-xl shadow-2xl"
                 />
-                <div className="absolute bottom-4 left-4 right-4 bg-black/70 backdrop-blur-md rounded-lg p-4">
+                <div className="absolute bottom-4 left-4 right-4 bg-black/70 backdrop-blur-md rounded-lg p-4 border border-white/10">
                   <p className="font-heading font-semibold text-white text-lg">
                     Hygienic Extraction
                   </p>
-                  <p className="text-white/70">Our Traditional Method</p>
+                  <p className="text-primary font-bold text-sm tracking-widest uppercase mt-1">Our Traditional Method</p>
                 </div>
               </div>
             </motion.div>
