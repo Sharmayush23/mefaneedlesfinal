@@ -63,7 +63,7 @@ export default function ProductsPage() {
         
         {/* Subtle Brand Gradients */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none" />
 
         <div className="relative z-20 text-center max-w-4xl mx-auto px-4 py-16">
           <motion.div
@@ -96,7 +96,7 @@ export default function ProductsPage() {
                 placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-muted/50 border-transparent focus:bg-background focus:border-primary transition-all"
+                className="pl-10 bg-muted/50 border-transparent focus:bg-background focus:border-accent/50 focus:ring-accent/20 transition-all shadow-sm"
               />
             </div>
           </div>

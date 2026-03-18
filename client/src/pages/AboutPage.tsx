@@ -61,7 +61,7 @@ export default function AboutPage() {
         
         {/* Subtle Brand Gradients */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-3xl translate-y-1/4 -translate-x-1/4 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/10 rounded-full blur-3xl translate-y-1/4 -translate-x-1/4 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 text-center">
           <motion.div
@@ -98,7 +98,7 @@ export default function AboutPage() {
               <h2 className="font-heading text-3xl sm:text-4xl font-bold" data-testid="text-story-title">
                 Pure Heart, Traditional Standards
               </h2>
-              <div className="w-16 h-1 bg-primary rounded-full" />
+              <div className="w-16 h-1 bg-brand-gradient-green rounded-full shadow-sm" />
 
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
@@ -252,7 +252,7 @@ export default function AboutPage() {
                 <Card className="h-full border-0 shadow-md hover:shadow-lg transition-shadow">
                   <CardContent className="p-6">
                     <div className="flex gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center flex-shrink-0">
+                      <div className="w-12 h-12 rounded-xl bg-brand-gradient-green flex items-center justify-center flex-shrink-0 shadow-md">
                         <value.icon className="h-6 w-6 text-white" />
                       </div>
                       <div>

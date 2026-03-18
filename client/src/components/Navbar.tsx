@@ -85,7 +85,7 @@ export default function Navbar() {
                         <div className="mt-2 pt-2 border-t border-border px-2 pb-1">
                           <Link 
                             href="/products" 
-                            className="flex items-center justify-between px-3 py-2 rounded-lg bg-primary/10 text-primary font-bold text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all"
+                            className="flex items-center justify-between px-3 py-2 rounded-lg bg-brand-gradient-green text-white font-bold text-xs uppercase tracking-widest hover:brightness-110 transition-all shadow-lg"
                           >
                             Explore All
                             <X className="h-3 w-3 rotate-45" />

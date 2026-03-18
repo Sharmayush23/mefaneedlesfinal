@@ -285,4 +285,14 @@
   .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
     inset: -1px;
   }
+
+  .bg-brand-gradient-green {
+    background: linear-gradient(135deg, #2D7D32 0%, #1B5E20 100%);
+  }
+  
+  .text-gradient-green {
+    background: linear-gradient(135deg, #2D7D32 0%, #1B5E20 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }

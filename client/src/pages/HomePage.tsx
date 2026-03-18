@@ -90,7 +90,8 @@ export default function HomePage() {
         
         {/* Subtle Brand Gradients */}
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-accent/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-secondary/5 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -107,8 +108,9 @@ export default function HomePage() {
 
                <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight" data-testid="text-hero-title">
                 The Essence of Pure{" "}
-                <span className="text-primary">
+                <span className="text-primary italic relative">
                   Tradition
+                  <span className="absolute -bottom-2 left-0 right-0 h-1 bg-accent/30 rounded-full blur-sm" />
                 </span>
               </h1>
 
@@ -249,10 +251,11 @@ export default function HomePage() {
             {products.map((product, index) => (
               <motion.div key={product.title} variants={fadeInUp}>
                 <Link href={`/products?category=${product.queryCategory}`}>
-                  <Card className="group h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-md cursor-pointer">
+                  <Card className="group h-full hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-0 shadow-lg cursor-pointer overflow-hidden">
                     <CardContent className="p-0">
                       <div className="h-48 bg-muted flex items-center justify-center relative overflow-hidden">
-                        <div className="absolute inset-0 bg-primary/5" />
+                        <div className="absolute inset-0 bg-accent/5 group-hover:bg-accent/10 transition-colors" />
+                        <div className="absolute -bottom-12 -right-12 w-24 h-24 bg-accent/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
                         <div className="w-full h-full flex items-center justify-center">
                           {product.image ? (
                             <img
@@ -340,11 +343,11 @@ export default function HomePage() {
             {values.map((value, index) => (
               <motion.div key={value.title} variants={fadeInUp}>
                 <Card className="h-full border-0 shadow-md hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6 text-center">
-                    <div className="w-14 h-14 rounded-xl bg-primary flex items-center justify-center mx-auto mb-4">
+                  <CardContent className="p-6 text-center group">
+                    <div className="w-14 h-14 rounded-xl bg-brand-gradient-green flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
                       <value.icon className="h-7 w-7 text-white" />
                     </div>
-                    <h3 className="font-heading font-semibold text-lg mb-3">
+                    <h3 className="font-heading font-semibold text-lg mb-3 group-hover:text-accent transition-colors">
                       {value.title}
                     </h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">
