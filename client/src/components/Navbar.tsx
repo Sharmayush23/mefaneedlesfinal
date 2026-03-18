@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { products } from "@/data/products";
 import logo from "@/assets/logo.png";
 
 const navLinks = [
@@ -49,22 +50,69 @@ export default function Navbar() {
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`relative font-medium text-sm transition-colors duration-200 ${location === link.href
-                  ? "text-primary"
-                  : "text-foreground/80 hover:text-primary"
-                  }`}
-                data-testid={`link-nav-${link.label.toLowerCase().replace(/\s/g, "-")}`}
-              >
-                {link.label}
-                {location === link.href && (
-                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
-                )}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              if (link.href === "/products") {
+                return (
+                  <div key={link.href} className="relative group">
+                    <Link
+                      href={link.href}
+                      className={`flex items-center gap-1 font-medium text-sm transition-colors duration-200 ${location.startsWith("/products")
+                        ? "text-primary"
+                        : "text-foreground/80 hover:text-primary"
+                        }`}
+                    >
+                      {link.label}
+                      <ChevronDown className="h-4 w-4 group-hover:rotate-180 transition-transform duration-300" />
+                    </Link>
+                    
+                    {/* Dropdown Menu */}
+                    <div className="absolute top-full -left-4 w-64 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100]">
+                      <div className="bg-white rounded-xl shadow-2xl border border-border p-2 overflow-hidden backdrop-blur-xl bg-white/95">
+                        {products.map((product) => (
+                          <Link
+                            key={product.id}
+                            href={`/products/${product.id}`}
+                            className="flex flex-col px-4 py-3 rounded-lg hover:bg-primary/5 transition-colors group/item"
+                          >
+                            <span className="text-sm font-bold text-foreground group-hover/item:text-primary transition-colors">
+                              {product.name}
+                            </span>
+                            <span className="text-[10px] text-muted-foreground uppercase tracking-widest mt-0.5">
+                              {product.category === "oils" ? "Premium Oil" : "Essential Feed"}
+                            </span>
+                          </Link>
+                        ))}
+                        <div className="mt-2 pt-2 border-t border-border px-2 pb-1">
+                          <Link 
+                            href="/products" 
+                            className="flex items-center justify-between px-3 py-2 rounded-lg bg-primary/10 text-primary font-bold text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all"
+                          >
+                            Explore All
+                            <X className="h-3 w-3 rotate-45" />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`relative font-medium text-sm transition-colors duration-200 ${location === link.href
+                    ? "text-primary"
+                    : "text-foreground/80 hover:text-primary"
+                    }`}
+                  data-testid={`link-nav-${link.label.toLowerCase().replace(/\s/g, "-")}`}
+                >
+                  {link.label}
+                  {location === link.href && (
+                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
+                  )}
+                </Link>
+              );
+            })}
           </div>
 
           <div className="hidden md:block">

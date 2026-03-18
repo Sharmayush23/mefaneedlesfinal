@@ -51,7 +51,7 @@ export default function ProductsPage() {
   return (
     <div className="pt-20 min-h-screen bg-background text-foreground">
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] flex items-center bg-slate-50 overflow-hidden">
+      <section className="relative min-h-[40vh] flex items-center bg-slate-50 overflow-hidden border-b">
         <div className="absolute inset-0 z-0">
           <div
             className="absolute inset-0 opacity-20"
@@ -65,49 +65,32 @@ export default function ProductsPage() {
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none" />
 
-        <div className="relative z-20 text-center max-w-4xl mx-auto px-4 py-20">
+        <div className="relative z-20 text-center max-w-4xl mx-auto px-4 py-16">
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="space-y-6"
+            className="space-y-4"
           >
             <p className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary font-semibold uppercase tracking-widest text-xs mb-2">
-              Our Purity Collections
+              Our Product Range
             </p>
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 tracking-tight font-heading leading-tight transition-all">
-              Pure Tradition in <br />
-              <span className="text-primary italic">Every Drop</span>
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight font-heading leading-tight transition-all">
+              Premium Quality <span className="text-primary">Oils & Feed</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Experience the authentic taste of Punjab. Chemical-free, nutrient-rich oils for every healthy kitchen and wellness need.
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Explore our diverse range of pure mustard oils, refined oils, and high-protein cattle feed products.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Filter & Search Bar */}
+      {/* Search Bar */}
       <section className="sticky top-20 z-40 bg-background/80 backdrop-blur-md border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            {/* Categories */}
-            <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto no-scrollbar">
-              {categories.map((cat) => (
-                <button
-                  key={cat.value}
-                  onClick={() => setSelectedCategory(cat.value)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${selectedCategory === cat.value
-                    ? "bg-primary text-primary-foreground shadow-md"
-                    : "bg-muted text-muted-foreground hover:bg-muted/80"
-                    }`}
-                >
-                  {cat.label}
-                </button>
-              ))}
-            </div>
-
-            {/* Search */}
-            <div className="relative w-full md:w-64">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">All Products</h2>
+            <div className="relative w-full md:w-80">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Search products..."
@@ -115,14 +98,6 @@ export default function ProductsPage() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10 bg-muted/50 border-transparent focus:bg-background focus:border-primary transition-all"
               />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                >
-                  <X className="h-3 w-3" />
-                </button>
-              )}
             </div>
           </div>
         </div>
@@ -169,9 +144,6 @@ export default function ProductsPage() {
                         </div>
 
                         <CardContent className="p-5">
-                          <p className="text-xs font-bold text-primary uppercase tracking-wider mb-1">
-                            {categories.find(c => c.value === product.category)?.label || product.category}
-                          </p>
                           <h3 className="text-lg font-heading font-bold text-foreground mb-2 line-clamp-1 group-hover:text-primary transition-colors">
                             {product.name}
                           </h3>
