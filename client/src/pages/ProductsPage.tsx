@@ -120,18 +120,18 @@ export default function ProductsPage() {
                   <motion.div key={product.id} variants={fadeInUp} layout>
                     <Link href={`/products/${product.id}`}>
                       <Card className="group h-full overflow-hidden border-0 bg-white dark:bg-zinc-900 shadow-sm hover:shadow-2xl transition-all duration-300 cursor-pointer rounded-xl transform hover:-translate-y-1">
-                        <div className="relative h-64 overflow-hidden bg-gray-100 dark:bg-zinc-800 flex items-center justify-center p-6">
+                        <div className="relative h-64 overflow-hidden bg-gray-50 dark:bg-zinc-800 flex items-center justify-center">
                           {product.badge && (
                             <Badge className="absolute top-4 right-4 z-10 bg-primary text-white shadow-lg">
                               {product.badge}
                             </Badge>
                           )}
-                          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                          <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-10 transition-opacity duration-300 z-10" />
                           {product.image ? (
                             <img
                               src={product.image}
                               alt={product.name}
-                              className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal group-hover:scale-110 transition-transform duration-500"
+                              className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal transition-transform duration-500 group-hover:scale-105"
                             />
                           ) : (
                             <Factory className="h-16 w-16 text-muted-foreground/30" />

@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { SiLinkedin, SiFacebook, SiX } from "react-icons/si";
+import logo from "@/assets/logo.png";
 
 const productLinks = [
   { label: "Kachi Ghani Mustard Oil", href: "/products" },
@@ -30,7 +31,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <img src="/src/assets/logo.png" alt="Sachkhand Logo" className="h-12 w-auto brightness-0 invert" />
+              <img src={logo} alt="Sachkhand Logo" className="h-12 w-auto" />
               <h3 className="font-heading text-2xl font-bold text-white">
                 Sachkhand
               </h3>

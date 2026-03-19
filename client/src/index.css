@@ -28,7 +28,7 @@
   --popover-border: 0 0% 90%;
   --primary: 142 47% 33%; /* Sachkhand Green #2D7D32 */
   --primary-foreground: 0 0% 100%;
-  --secondary: 210 20% 15%; /* Premium Dark Charcoal #1A1C1E */
+  --secondary: 142 47% 10%; /* Deep Forest Green #0A2E0C */
   --secondary-foreground: 0 0% 100%;
   --muted: 0 0% 96%;
   --muted-foreground: 0 0% 45%;
@@ -112,7 +112,7 @@
   --popover-border: 0 0% 18%;
   --primary: 142 47% 33%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 210 20% 15%;
+  --secondary: 142 47% 10%;
   --secondary-foreground: 0 0% 100%;
   --muted: 0 0% 12%;
   --muted-foreground: 0 0% 65%;

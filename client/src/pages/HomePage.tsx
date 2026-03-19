@@ -4,9 +4,7 @@ import { ArrowRight, Award, Globe, CheckCircle, Factory, Users, Zap, Shield } fr
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import sachkhandBottleHero from "@/assets/products/sachkhand_bottle_hero.png";
-import newProduct2 from "@/assets/products/new_product_2.png";
-import newProduct3 from "@/assets/products/new_product_3.png";
-
+import { products as allProducts } from "@/data/products";
 
 const stats = [
   { value: "45+", label: "Years", description: "Legacy of Purity" },
@@ -14,29 +12,15 @@ const stats = [
   { value: "100%", label: "Pure", description: "Chemical Free" },
   { value: "#1", label: "Choice", description: "In Khanna" },
 ];
-const products = [
-  {
-    title: "Kachi Ghani Mustard Oil",
-    description: "Traditionally cold-pressed to preserve natural antioxidants and its authentic pungent taste.",
-    category: "Purity First",
-    queryCategory: "kachi-ghani",
-    image: sachkhandBottleHero,
-  },
-  {
-    title: "Cooking Essentials",
-    description: "Perfect for daily Indian cooking, enhancing the flavour and health of your family meals.",
-    category: "Healthy Kitchen",
-    queryCategory: "cooking",
-    image: newProduct2,
-  },
-  {
-    title: "Hair & Skin Care",
-    description: "Nutrient-rich natural oil for deep conditioning and scalp health, just like the old days.",
-    category: "Natural Wellness",
-    queryCategory: "hair-care",
-    image: newProduct3,
-  },
-];
+
+const landingProducts = allProducts.map(p => ({
+  title: p.name,
+  description: p.description,
+  category: p.category === "oils" ? "Purity First" : "Nutritious Feed",
+  queryCategory: p.category,
+  image: p.image,
+  id: p.id
+}));
 
 const values = [
   {
@@ -247,20 +231,19 @@ export default function HomePage() {
             variants={stagger}
             className="grid md:grid-cols-3 gap-8"
           >
-            {products.map((product, index) => (
+            {landingProducts.map((product, index) => (
               <motion.div key={product.title} variants={fadeInUp}>
                 <Link href={`/products?category=${product.queryCategory}`}>
                   <Card className="group h-full hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-0 shadow-lg cursor-pointer overflow-hidden">
                     <CardContent className="p-0">
-                      <div className="h-48 bg-muted flex items-center justify-center relative overflow-hidden">
+                      <div className="h-64 bg-gray-50 flex items-center justify-center relative overflow-hidden">
                         <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors" />
-                        <div className="absolute -bottom-12 -right-12 w-24 h-24 bg-primary/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
                         <div className="w-full h-full flex items-center justify-center">
                           {product.image ? (
                             <img
                               src={product.image}
                               alt={product.title}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
                             />
                           ) : (
                             <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center">
