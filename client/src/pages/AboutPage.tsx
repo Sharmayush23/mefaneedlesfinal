@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Award, Users, Target, Eye, Shield, Zap, HeartHandshake, CheckCircle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import sachkhandBottleHero from "@/assets/products/sachkhand_bottle_hero.png";
 
 const stats = [
   { value: "45+", label: "Years", description: "Legacy of Purity" },
@@ -126,7 +127,7 @@ export default function AboutPage() {
               <div className="absolute -inset-4 bg-primary/10 rounded-2xl blur-2xl" />
               <div className="relative">
                 <img
-                  src="/src/assets/products/sachkhand_bottle_hero.png"
+                  src={sachkhandBottleHero}
                   alt="Pure Oil Extraction at Sachkhand"
                   className="w-full h-auto rounded-xl shadow-2xl"
                 />
