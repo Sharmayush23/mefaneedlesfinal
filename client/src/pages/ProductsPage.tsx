@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { ProductCard } from "@/components/ProductCard";
 import { products } from "@/data/products";
 
 const categories = [
@@ -117,47 +118,7 @@ export default function ProductsPage() {
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
               >
                 {filteredProducts.map((product) => (
-                  <motion.div key={product.id} variants={fadeInUp} layout>
-                    <Link href={`/products/${product.id}`}>
-                      <Card className="group h-full overflow-hidden border-0 bg-white dark:bg-zinc-900 shadow-sm hover:shadow-2xl transition-all duration-300 cursor-pointer rounded-xl transform hover:-translate-y-1">
-                        <div className="relative h-64 overflow-hidden bg-gray-50 dark:bg-zinc-800 flex items-center justify-center">
-                          {product.badge && (
-                            <Badge className="absolute top-4 right-4 z-10 bg-primary text-white shadow-lg">
-                              {product.badge}
-                            </Badge>
-                          )}
-                          <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-10 transition-opacity duration-300 z-10" />
-                          {product.image ? (
-                            <img
-                              src={product.image}
-                              alt={product.name}
-                              className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal transition-transform duration-500 group-hover:scale-105"
-                            />
-                          ) : (
-                            <Factory className="h-16 w-16 text-muted-foreground/30" />
-                          )}
-                          <div className="absolute bottom-4 left-4 right-4 z-20 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                            <Button size="sm" className="w-full bg-white text-black hover:bg-gray-100 dark:bg-zinc-800 dark:text-white dark:hover:bg-zinc-700 font-semibold shadow-lg border-0">
-                              View Details
-                            </Button>
-                          </div>
-                        </div>
-
-                        <CardContent className="p-5">
-                          <h3 className="text-lg font-heading font-bold text-foreground mb-2 line-clamp-1 group-hover:text-primary transition-colors">
-                            {product.name}
-                          </h3>
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-                            <span className="bg-muted px-2 py-0.5 rounded text-xs font-medium">
-                              {product.gaugeRange}
-                            </span>
-                            <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
-                            <span className="truncate max-w-[120px]">{product.material}</span>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </Link>
-                  </motion.div>
+                  <ProductCard key={product.id} product={product} layout />
                 ))}
               </motion.div>
             ) : (

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import sachkhandBottleHero from "@/assets/products/sachkhand_bottle_hero.png";
 import { products as allProducts } from "@/data/products";
+import { ProductCard } from "@/components/ProductCard";
 
 const stats = [
   { value: "45+", label: "Years", description: "Legacy of Purity" },
@@ -231,42 +232,8 @@ export default function HomePage() {
             variants={stagger}
             className="grid md:grid-cols-3 gap-8"
           >
-            {landingProducts.map((product, index) => (
-              <motion.div key={product.title} variants={fadeInUp}>
-                <Link href={`/products?category=${product.queryCategory}`}>
-                  <Card className="group h-full hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-0 shadow-lg cursor-pointer overflow-hidden">
-                    <CardContent className="p-0">
-                      <div className="h-64 bg-gray-50 flex items-center justify-center relative overflow-hidden">
-                        <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors" />
-                        <div className="w-full h-full flex items-center justify-center">
-                          {product.image ? (
-                            <img
-                              src={product.image}
-                              alt={product.title}
-                              className="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
-                            />
-                          ) : (
-                            <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center">
-                              <Factory className="h-12 w-12 text-primary/60" />
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                      <div className="p-6">
-                        <p className="text-xs text-primary font-semibold uppercase tracking-wider mb-2">
-                          {product.category}
-                        </p>
-                        <h3 className="font-heading text-xl font-semibold mb-3">
-                          {product.title}
-                        </h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed">
-                          {product.description}
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </motion.div>
+            {allProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
             ))}
           </motion.div>
 
