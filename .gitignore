@@ -35,3 +35,5 @@ build
 temp
 bin
 obj
+
+*.mjs

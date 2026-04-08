@@ -202,7 +202,7 @@ export default function AboutPage() {
                     Our Vision
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    We envision a future where Sachkhand Mustard Oil is synonymous with health and purity in every household. We aim to be the most trusted brand for mustard oil, driving food standards through quality leadership and unyielding honesty.
+                    We envision a future where Sachkhand is synonymous with health and purity in every household. We aim to be the most trusted brand for mustard oil, driving food standards through quality leadership and unyielding honesty.
                   </p>
                 </CardContent>
               </Card>

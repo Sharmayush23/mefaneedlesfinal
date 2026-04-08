@@ -1,4 +1,14 @@
 /// <reference types="vite/client" />
+export interface ProductTheme {
+    primary: string;
+    secondary: string;
+    accent: string;
+    bg: string;
+    surface: string;
+    textPrimary?: string;
+    textSecondary?: string;
+}
+
 export interface Product {
     id: string;
     name: string;
@@ -12,6 +22,7 @@ export interface Product {
     badge?: string;
     image: string;
     images?: string[];
+    theme?: ProductTheme;
 }
 
 // Helper to deduce category from name
@@ -31,14 +42,13 @@ function deduceDescription(name: string): string {
 
 // Automatically import all images from the assets/products directory
 // Use absolute path from Vite root (client directory)
-import mustardOilImg from "@/assets/images/mustard oil.png";
-import cottonOilImg from "@/assets/images/cotton refined oil.png";
-import yellowMustardImg from "@/assets/images/yellow mustard.png";
-import cottonseedCakeImg from "@/assets/images/cottanseed cake.png";
-import mustardCakeImg from "@/assets/images/mustard oil.png"; // Fallback if specific cake image is missing
-import cattleFeedImg from "@/assets/images/cattle feed.png";
+import mustardOilImg from "@/assets/products/FINAL IMAGES/MUSTARD OIL.png";
+import cottonOilImg from "@/assets/products/FINAL IMAGES/COTTAN SEED REFINED OIL.png";
+import sunflowerOilImg from "@/assets/products/FINAL IMAGES/SUNFLOWER OIL.png";
+import cottonseedCakeImg from "@/assets/products/FINAL IMAGES/COTTAN SEED CAKE.png";
+import cattleFeedImg from "@/assets/products/FINAL IMAGES/CATTLE FEED.png";
 
-// Hardcoded Sachkhand Mustard Oil Products
+// Hardcoded Sachkhand Products
 export const products: Product[] = [
     {
         id: "mustard-oil",
@@ -52,6 +62,15 @@ export const products: Product[] = [
         application: "Cooking & Preservation",
         image: mustardOilImg,
         badge: "Pure",
+        theme: {
+            primary: "48 100% 45%",       // Mustard Yellow #E6B800
+            secondary: "123 46% 34%",     // Natural Green #2E7D32
+            accent: "42 100% 50%",        // Golden Accent #FFB300
+            bg: "46 100% 94%",            // Light Cream BG #FFF8E1
+            surface: "0 0% 100%",
+            textPrimary: "0 0% 18%",      // Dark Text #2F2F2F
+            textSecondary: "0 0% 46%"     // Soft Gray #757575
+        }
     },
     {
         id: "cotton-refined-oil",
@@ -64,18 +83,36 @@ export const products: Product[] = [
         coating: "Filtered",
         application: "Deep Frying & Frying",
         image: cottonOilImg,
+        theme: {
+            primary: "0 66% 47%",         // Primary Red #C62828
+            secondary: "218 69% 38%",     // Royal Blue #1E4FA3
+            accent: "45 89% 57%",         // Bright Yellow #F4C430
+            bg: "0 100% 98%",             // Soft White BG #FFF5F5
+            surface: "0 0% 100%",
+            textPrimary: "0 0% 12%",      // Dark Text #1F1F1F
+            textSecondary: "0 0% 40%"     // Neutral Gray #666666
+        }
     },
     {
-        id: "yellow-mustard-oil",
-        name: "Yellow Mustard Oil",
+        id: "sunflower-oil",
+        name: "Sunflower Oil",
         category: "oils",
-        description: "Mild and healthy yellow mustard oil, perfect for daily cooking and heart health.",
-        features: ["Heart Healthy", "Low Absorption", "Zero Cholesterol", "Rich in Omega-3"],
+        description: "Light and healthy sunflower oil, perfect for everyday cooking and keeping your heart healthy.",
+        features: ["Heart Healthy", "Light & Neutral", "Zero Cholesterol", "Rich in Vitamin E"],
         gaugeRange: "1L, 2L, 5L",
-        material: "Yellow Mustard Seeds",
-        coating: "None (Pure Oil)",
-        application: "Daily Sautéing & Salads",
-        image: yellowMustardImg,
+        material: "Sunflower Seeds",
+        coating: "Refined",
+        application: "Daily Cooking & Frying",
+        image: sunflowerOilImg,
+        theme: {
+            primary: "45 100% 50%",       // Bright Yellow
+            secondary: "35 100% 45%",     // Sunflower Orange
+            accent: "55 100% 60%",        // Light Accent
+            bg: "45 100% 98%",            // Very Light Sunflower
+            surface: "0 0% 100%",
+            textPrimary: "0 0% 15%",      // Darkened Text
+            textSecondary: "0 0% 40%"     // Muted Text
+        }
     },
     {
         id: "cottonseed-cake",
@@ -88,18 +125,15 @@ export const products: Product[] = [
         coating: "Pressed Cake",
         application: "Animal Nutrition",
         image: cottonseedCakeImg,
-    },
-    {
-        id: "mustard-cake",
-        name: "Mustard Cake",
-        category: "cattle-feed",
-        description: "Pure mustard cake, excellent for organic farming and high-quality cattle feed.",
-        features: ["Organic Fertilizer", "Rich in Nutrients", "High Protein", "Natural Alternative"],
-        gaugeRange: "25kg, 50kg Bags",
-        material: "Mustard Seed Residue",
-        coating: "Traditional Press",
-        application: "Farming & Animal Feed",
-        image: mustardCakeImg,
+        theme: {
+            primary: "218 69% 38%",       // Primary Blue #1E4FA3
+            secondary: "0 66% 47%",       // Strong Red #C62828
+            accent: "45 89% 57%",         // Accent Yellow #F4C430
+            bg: "216 33% 97%",            // Light Background #F5F7FA
+            surface: "0 0% 100%",
+            textPrimary: "0 0% 10%",      // Dark Text #1A1A1A
+            textSecondary: "220 9% 46%"    // Neutral Gray #6B7280
+        }
     },
     {
         id: "cattle-feed",
@@ -112,6 +146,15 @@ export const products: Product[] = [
         coating: "Pelletized",
         application: "Daily Cattle Nutrition",
         image: cattleFeedImg,
+        theme: {
+            primary: "218 69% 38%",       // Primary Blue #1E4FA3
+            secondary: "0 66% 47%",       // Strong Red #C62828
+            accent: "45 89% 57%",         // Accent Yellow #F4C430
+            bg: "216 33% 97%",            // Light Background #F5F7FA
+            surface: "0 0% 100%",
+            textPrimary: "0 0% 10%",      // Dark Text #1A1A1A
+            textSecondary: "220 9% 46%"    // Neutral Gray #6B7280
+        }
     }
 ];
 

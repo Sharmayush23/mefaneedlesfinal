@@ -4,11 +4,11 @@ import { SiLinkedin, SiFacebook, SiX } from "react-icons/si";
 import logo from "@/assets/logo.png";
 
 const productLinks = [
-  { label: "Kachi Ghani Mustard Oil", href: "/products" },
-  { label: "Yellow Mustard Oil", href: "/products" },
-  { label: "Cold Pressed Oil", href: "/products" },
-  { label: "Pure Mustard Oil", href: "/products" },
-  { label: "Traditional Extraction", href: "/products" },
+  { label: "Mustard Oil", href: "/products" },
+  { label: "Sunflower Oil", href: "/products" },
+  { label: "Cotton Refined Oil", href: "/products" },
+  { label: "Cattle Feed", href: "/products" },
+  { label: "Cottonseed Cake", href: "/products" },
 ];
 
 const companyLinks = [
@@ -129,7 +129,7 @@ export default function Footer() {
 
         <div className="border-t border-white/5 mt-12 pt-8 text-center">
           <p className="text-white/30 text-sm">
-            &copy; {new Date().getFullYear()} Sachkhand Mustard Oil. All Rights Reserved.
+            &copy; {new Date().getFullYear()} Sachkhand. All Rights Reserved.
           </p>
         </div>
       </div>

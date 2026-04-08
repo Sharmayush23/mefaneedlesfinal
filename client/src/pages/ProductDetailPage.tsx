@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { products } from "@/data/products";
 import { Separator } from "@/components/ui/separator";
+import ProductImageViewer from "@/components/ProductImageViewer";
 
 const fadeInUp = {
     initial: { opacity: 0, y: 20 },
@@ -51,8 +52,19 @@ export default function ProductDetailPage() {
     // Ensure we don't crash if even product.image is missing (though typings say it's there)
     const currentImage = images[selectedImageIndex] || product.image;
 
+    // Dynamically build theme styles if product has a theme
+    const themeStyles = product.theme ? {
+        '--primary': product.theme.primary,
+        '--secondary': product.theme.secondary,
+        '--accent': product.theme.accent,
+        '--background': product.theme.bg,
+        '--card': product.theme.surface,
+        '--foreground': product.theme.textPrimary || '0 0% 10%',
+        '--muted-foreground': product.theme.textSecondary || '0 0% 45%',
+    } as React.CSSProperties : {};
+
     return (
-        <div className="pt-20 bg-background min-h-screen">
+        <div className="pt-20 bg-background min-h-screen transition-colors duration-500" style={themeStyles}>
             {/* Breadcrumb / Back Navigation */}
             <div className="border-b bg-muted/20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -69,47 +81,14 @@ export default function ProductDetailPage() {
                 <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
                     {/* Left Column: Sticky Image */}
                     <div className="relative">
-                        <div className="lg:sticky lg:top-32 space-y-6">
-                            <motion.div
-                                key={currentImage} // Animate when image changes
-                                initial={{ opacity: 0.5 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ duration: 0.3 }}
-                                className="bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl border border-border/50 relative aspect-[4/3] flex items-center justify-center p-8 group"
-                            >
-                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-100 to-white dark:from-zinc-800 dark:to-zinc-900 -z-10" />
-
-                                {product.badge && (
-                                    <Badge className="absolute top-6 right-6 text-sm py-1.5 px-4 bg-primary text-white z-10 shadow-lg">
-                                        {product.badge}
-                                    </Badge>
-                                )}
-
-                                {currentImage ? (
-                                    <img
-                                        src={currentImage}
-                                        alt={product.name}
-                                        className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal transform group-hover:scale-105 transition-transform duration-700"
-                                    />
-                                ) : (
-                                    <Factory className="h-32 w-32 text-muted-foreground/20" />
-                                )}
-                            </motion.div>
-
-                            {/* Thumbnail Gallery */}
-                            {images.length > 1 && (
-                                <div className="grid grid-cols-4 gap-4">
-                                    {images.map((img, i) => (
-                                        <div
-                                            key={i}
-                                            onClick={() => setSelectedImageIndex(i)}
-                                            className={`aspect-square rounded-lg border-2 ${selectedImageIndex === i ? 'border-primary ring-2 ring-primary/20 bg-primary/5' : 'border-transparent bg-muted/50 hover:bg-muted'} flex items-center justify-center cursor-pointer transition-all duration-200`}
-                                        >
-                                            <img src={img} className="w-full h-full object-contain p-2 mix-blend-multiply dark:mix-blend-normal" alt={`View ${i + 1}`} />
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
+                        <div className="lg:sticky lg:top-32">
+                            <ProductImageViewer
+                                images={images}
+                                productName={product.name}
+                                selectedIndex={selectedImageIndex}
+                                onSelectIndex={setSelectedImageIndex}
+                                badge={product.badge}
+                            />
                         </div>
                     </div>
 

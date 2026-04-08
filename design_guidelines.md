@@ -1,15 +1,15 @@
-# Sachkhand Mustard Oil Design Guidelines
+# Sachkhand Design Guidelines
 
 ## Design Approach
 **Reference-Based Approach**: Draw inspiration from professional B2B manufacturing websites like Bosch Industrial, Siemens, and modern SaaS products. Balance industrial credibility with contemporary web design for a premium food brand.
 
 ## Brand Foundation
 
-**Colors** (aligned with Sachkhand brand palette):
-- Primary: Red #D92121 (represents tradition and boldness)
-- Secondary: Blue #1E4BB5 (represents trust and health)
-- Accent: Green #2D7D32 (represents purity and natural origin)
-- Supporting: Dark grays, whites, and subtle textures
+**Colors (aligned with Sachkhand brand palette):
+- Primary: Brand Green #2D7D32 (represents purity and natural origin)
+- Secondary: Deep Charcoal #1A1A1A (represents professional manufacturing heritage)
+- Accent: Vibrant Leaf Green (represents health and vitality)
+- Supporting: Soft grays, whites, and subtle glass-morphism textures
 
 **Typography Hierarchy**:
 - Headings: Poppins (700-800 weight) for strong, professional presence
@@ -46,16 +46,16 @@ Section padding: py-16 to py-24 on desktop, py-12 on mobile
 - Hover: lift with translateY(-8px), enhanced shadow
 
 **Buttons**:
-- Primary: Gradient red-to-orange, white text, 50px border-radius
+- Primary: Brand Green gradient, white text, 50px border-radius
 - Padding: 12px 32px
 - Hover: lift 2px, increased shadow
-- Secondary: White with red border, red text
+- Secondary: White with green border, green text
 
 **Product Cards**:
 - Image container: 250px height, light gray gradient background
 - Product image: 70% container size, centered, object-fit contain
-- Badge: Top-right corner, red background, white text
-- Content: 24px padding, category label (red, uppercase), title, description, feature tags
+- Badge: Top-right corner, green background, white text
+- Content: 24px padding, category label (green, uppercase), title, description, feature tags
 
 **Hero Sections**:
 - Homepage: Full viewport (80-100vh) with diagonal gradient overlay (dark gray to darker), founder portrait integrated
@@ -82,7 +82,7 @@ Section padding: py-16 to py-24 on desktop, py-12 on mobile
 - Grid layout: 4 columns on desktop, 2 on mobile
 
 **Timeline Design**:
-- Vertical line with gradient (red to orange)
+- Vertical line with brand green gradient
 - Circular markers (20px) at milestones
 - Cards alternate left/right on desktop, stack on mobile
 - Year labels bold and prominent
@@ -103,7 +103,7 @@ Section padding: py-16 to py-24 on desktop, py-12 on mobile
 
 **Forms**:
 - Clean input fields with label above
-- Focus state: red border
+- Focus state: green border
 - Submit button: Primary style
 - Right column: Dark card with white text for contrast
 

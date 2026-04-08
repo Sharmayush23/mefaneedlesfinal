@@ -175,7 +175,7 @@ export default function TimelinePage() {
               Continuing the Purity
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto" data-testid="text-legacy-description">
-              Today, Sachkhand Mustard Oil continues to honor its roots by delivering the same high-purity quality that families have trusted for decades.
+              Today, Sachkhand continues to honor its roots by delivering the same high-purity quality that families have trusted for decades.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8">
               <div className="text-center">

@@ -11,17 +11,17 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-[hsl(0,74%,49%)] text-white hover:bg-[hsl(0,74%,39%)] transition-all border border-transparent hover:-translate-y-0.5 shadow-md",
+          "bg-primary text-white hover:bg-primary/90 transition-all border border-transparent hover:-translate-y-0.5 shadow-md",
         destructive:
           "bg-destructive text-destructive-foreground border border-destructive-border",
         outline:
           // Shows the background color of whatever card / sidebar / accent background it is inside of.
           // Inherits the current text color.
           " border [border-color:var(--button-outline)]  shadow-xs active:shadow-none ",
-        secondary: "bg-[hsl(222,71%,41%)] text-white hover:bg-[hsl(222,71%,31%)] border border-transparent shadow-md transition-all hover:-translate-y-0.5",
+        secondary: "bg-secondary text-white hover:bg-secondary/90 border border-transparent shadow-md transition-all hover:-translate-y-0.5",
         // Add a transparent border so that when someone toggles a border on later, it doesn't shift layout/size.
         ghost: "border border-transparent hover:bg-accent/10",
-        cta: "bg-gradient-to-r from-[hsl(0,74%,49%)] to-[hsl(35,100%,50%)] text-white border-transparent hover:opacity-90 shadow-lg transition-all hover:scale-105 hover:shadow-primary/20",
+        cta: "bg-brand-gradient-green text-white border-transparent hover:opacity-90 shadow-lg transition-all hover:scale-105 hover:shadow-primary/20",
       },
       // Heights are set as "min" heights, because sometimes Ai will place large amount of content
       // inside buttons. With a min-height they will look appropriate with small amounts of content,

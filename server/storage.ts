@@ -81,7 +81,7 @@ const initialTimelineEvents: TimelineEvent[] = [
     id: "2010-trust",
     year: 2010,
     title: "Over 40 Years of Trust",
-    description: "Celebrating four decades of service, Sachkhand Mustard Oil expanded its range to include specialized yellow mustard and wellness oils, catering to the evolving health needs of our customers.",
+    description: "Celebrating four decades of service, Sachkhand expanded its range to include specialized yellow mustard and wellness oils, catering to the evolving health needs of our customers.",
   },
   {
     id: "2023-heritage",

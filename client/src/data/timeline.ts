@@ -22,7 +22,7 @@ export const timelineEvents: TimelineEvent[] = [
         id: "global-trust",
         year: 1998,
         title: "A Benchmark of Quality",
-        description: "By the late 90s, Sachkhand Mustard Oil became a trusted name across Punjab and expanded into neighboring states. Our commitment to quality and health earned us the loyalty of thousands of households.",
+        description: "By the late 90s, Sachkhand became a trusted name across Punjab and expanded into neighboring states. Our commitment to quality and health earned us the loyalty of thousands of households.",
     },
     {
         id: "modern-heritage",

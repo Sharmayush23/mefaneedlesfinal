@@ -43,10 +43,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center gap-3" data-testid="link-home-logo">
             <img src={logo} alt="Sachkhand Logo" className="h-10 w-auto" />
-            <div className="flex flex-col leading-none">
-              <span className="text-xl font-bold text-primary font-heading uppercase tracking-tight">SACHKHAND</span>
-              <span className="text-sm font-light text-foreground/70 font-heading">Mustard Oil</span>
-            </div>
+            <span className="text-xl font-bold text-primary font-heading uppercase tracking-tight">SACHKHAND</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-8">

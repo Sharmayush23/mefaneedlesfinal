@@ -344,39 +344,56 @@ export default function HomePage() {
       </section>
 
       <section className="py-20 bg-slate-50 text-foreground">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            <h2 className="font-heading text-3xl sm:text-4xl font-bold">
-              Ready to Upgrade to{" "}
-              <span className="text-accent">Authentic</span> Purity?
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Switch to Sachkhand Mustard Oil today and experience the health and tradition of world-class oil production.
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Link href="/contact">
-                <Button size="lg" variant="cta" className="gap-2" data-testid="button-contact-us-cta">
-                  Contact Us
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-              </Link>
-              <Link href="/facilities">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-white border-border text-foreground hover:bg-slate-50"
-                  data-testid="button-view-facilities"
-                >
-                  View Facilities
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-8 text-center lg:text-left"
+            >
+              <h2 className="font-heading text-3xl sm:text-4xl font-bold">
+                Ready to Upgrade to{" "}
+                <span className="text-accent">Authentic</span> Purity?
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-xl mx-auto lg:mx-0">
+                Switch to Sachkhand today and experience the health and tradition of world-class oil production.
+              </p>
+              <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+                <Link href="/contact">
+                  <Button size="lg" variant="cta" className="gap-2" data-testid="button-contact-us-cta">
+                    Contact Us
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
+                <Link href="/facilities">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="bg-white border-border text-foreground hover:bg-slate-50"
+                    data-testid="button-view-facilities"
+                  >
+                    View Facilities
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="w-full h-[300px] sm:h-[350px] lg:h-[300px] rounded-2xl overflow-hidden shadow-2xl border-4 border-primary/30 bg-muted"
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3493.6503205423073!2d76.22507217564969!3d30.687345574606137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3910110880088143%3A0x4c9927b87939ef63!2sSACHKHAND%20MUSTARD%20OIL!5e1!3m2!1sen!2sin!4v1775569397290!5m2!1sen!2sin"
+                className="w-full h-full border-0"
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </motion.div>
+          </div>
         </div>
       </section>
     </div>
