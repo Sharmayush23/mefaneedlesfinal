@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 interface ProductCardProps {
   product: Product;
   className?: string;
-  layout?: boolean | string;
+  layout?: boolean | "position" | "size" | "preserve-aspect";
 }
 
 export function ProductCard({ product, className, layout }: ProductCardProps) {
