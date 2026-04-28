@@ -59,15 +59,15 @@ export default function ProductImageViewer({
           initial={{ opacity: 0.6, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.35 }}
-          className="relative rounded-2xl overflow-hidden border border-border/40 shadow-2xl bg-white dark:bg-zinc-900 cursor-zoom-in select-none"
+          className="relative rounded-2xl overflow-hidden border border-border/40 shadow-2xl bg-background cursor-zoom-in select-none"
           style={{ aspectRatio: "4/3" }}
           onMouseEnter={() => setMagnify(true)}
           onMouseLeave={() => setMagnify(false)}
           onMouseMove={handleMouseMove}
           onClick={() => openLightbox(selectedIndex)}
         >
-          {/* Radial gradient bg */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-50 via-white to-gray-100 dark:from-zinc-800 dark:via-zinc-900 dark:to-zinc-950 pointer-events-none z-0" />
+          {/* Background - Matched to Theme Cream */}
+          <div className="absolute inset-0 bg-background pointer-events-none z-0" />
 
           {/* Badge */}
           {badge && (
@@ -108,7 +108,6 @@ export default function ProductImageViewer({
                   left: `calc(${cursorPos.x}% - 90px)`,
                   top: `calc(${cursorPos.y}% - 90px)`,
                   boxShadow: "0 8px 40px rgba(0,0,0,0.35)",
-                  // Boundary constraints using clamp
                   transform: `translate(
                     clamp(90px - ${cursorPos.x}%, 0px, (100% - 90px) - ${cursorPos.x}%),
                     clamp(90px - ${cursorPos.y}%, 0px, (100% - 90px) - ${cursorPos.y}%)
@@ -171,7 +170,6 @@ export default function ProductImageViewer({
             exit={{ opacity: 0 }}
             onClick={closeLightbox}
           >
-            {/* Close */}
             <button
               className="absolute top-5 right-5 z-10 bg-white/10 hover:bg-white/20 text-white rounded-full p-2.5 transition-colors"
               onClick={closeLightbox}
@@ -180,7 +178,6 @@ export default function ProductImageViewer({
               <X className="w-5 h-5" />
             </button>
 
-            {/* Prev */}
             {images.length > 1 && (
               <button
                 className="absolute left-5 z-10 bg-white/10 hover:bg-white/20 text-white rounded-full p-3 transition-colors"
@@ -191,7 +188,6 @@ export default function ProductImageViewer({
               </button>
             )}
 
-            {/* Image */}
             <motion.div
               className="relative flex items-center justify-center"
               onClick={(e) => e.stopPropagation()}
@@ -208,7 +204,6 @@ export default function ProductImageViewer({
               />
             </motion.div>
 
-            {/* Next */}
             {images.length > 1 && (
               <button
                 className="absolute right-5 z-10 bg-white/10 hover:bg-white/20 text-white rounded-full p-3 transition-colors"
@@ -219,7 +214,6 @@ export default function ProductImageViewer({
               </button>
             )}
 
-            {/* Dot indicators */}
             {images.length > 1 && (
               <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
                 {images.map((_, i) => (

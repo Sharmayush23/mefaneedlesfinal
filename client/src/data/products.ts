@@ -61,15 +61,14 @@ export const products: Product[] = [
         coating: "None (Pure Oil)",
         application: "Cooking & Preservation",
         image: mustardOilImg,
-        badge: "Pure",
         theme: {
-            primary: "48 100% 45%",       // Mustard Yellow #E6B800
-            secondary: "123 46% 34%",     // Natural Green #2E7D32
+            primary: "123 46% 34%",       // Natural Green #0c500fff (Buttons)
+            secondary: "48 100% 45%",     // Mustard Yellow #E6B800
             accent: "42 100% 50%",        // Golden Accent #FFB300
-            bg: "46 100% 94%",            // Light Cream BG #FFF8E1
+            bg: "0 66% 47%",              // Product Red #f45a5aff (Background)
             surface: "0 0% 100%",
-            textPrimary: "0 0% 18%",      // Dark Text #2F2F2F
-            textSecondary: "0 0% 46%"     // Soft Gray #757575
+            textPrimary: "0 0% 100%",      // White Text for contrast on red
+            textSecondary: "0 0% 90%"      // Soft White
         }
     },
     {
@@ -84,13 +83,13 @@ export const products: Product[] = [
         application: "Deep Frying & Frying",
         image: cottonOilImg,
         theme: {
-            primary: "0 66% 47%",         // Primary Red #C62828
-            secondary: "218 69% 38%",     // Royal Blue #1E4FA3
-            accent: "45 89% 57%",         // Bright Yellow #F4C430
-            bg: "0 100% 98%",             // Soft White BG #FFF5F5
+            primary: "0 66% 47%",       // Royal Blue #ffffffff (Buttons)
+            secondary: "0 66% 47%",       // Primary Red #C62828
+            accent: "0 0% 98%",         // Bright Yellow #F4C430
+            bg: "218 69% 38%",               // Soft White BG 
             surface: "0 0% 100%",
-            textPrimary: "0 0% 12%",      // Dark Text #1F1F1F
-            textSecondary: "0 0% 40%"     // Neutral Gray #666666
+            textPrimary: "0 0% 100%",      // Dark Text
+            textSecondary: "0 0% 40%"     // Neutral Gray  
         }
     },
     {
@@ -105,10 +104,10 @@ export const products: Product[] = [
         application: "Daily Cooking & Frying",
         image: sunflowerOilImg,
         theme: {
-            primary: "45 100% 50%",       // Bright Yellow
-            secondary: "35 100% 45%",     // Sunflower Orange
+            primary: "123 46% 34%",       // Green for health
+            secondary: "45 100% 50%",     // Bright Yellow
             accent: "55 100% 60%",        // Light Accent
-            bg: "45 100% 98%",            // Very Light Sunflower
+            bg: "216 33% 97%",            // Very Light Sunflower
             surface: "0 0% 100%",
             textPrimary: "0 0% 15%",      // Darkened Text
             textSecondary: "0 0% 40%"     // Muted Text
@@ -150,14 +149,10 @@ export const products: Product[] = [
             primary: "218 69% 38%",       // Primary Blue #1E4FA3
             secondary: "0 66% 47%",       // Strong Red #C62828
             accent: "45 89% 57%",         // Accent Yellow #F4C430
-            bg: "216 33% 97%",            // Light Background #F5F7FA
+            bg: "0 66% 47%",            // Light Background #F5F7FA
             surface: "0 0% 100%",
-            textPrimary: "0 0% 10%",      // Dark Text #1A1A1A
+            textPrimary: "0 0% 100%",      // Dark Text #1A1A1A
             textSecondary: "220 9% 46%"    // Neutral Gray #6B7280
         }
     }
 ];
-
-// Explicit Transfer Needle fallback if needed, but only if not found in folders.
-// User requested "start adding the images to the each product divs", suggesting folders are key.
-// We'll trust the dynamic generation.

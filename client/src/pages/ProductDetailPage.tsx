@@ -1,7 +1,7 @@
 import { useParams, Link } from "wouter";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Factory, CheckCircle, Shield, Zap, Mail } from "lucide-react";
+import { ArrowLeft, CheckCircle, Shield, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -47,10 +47,7 @@ export default function ProductDetailPage() {
         );
     }
 
-    // Fallback if no images array (shouldn't happen with new logic, but safe to have)
     const images = product.images && product.images.length > 0 ? product.images : [product.image];
-    // Ensure we don't crash if even product.image is missing (though typings say it's there)
-    const currentImage = images[selectedImageIndex] || product.image;
 
     // Dynamically build theme styles if product has a theme
     const themeStyles = product.theme ? {
@@ -61,15 +58,16 @@ export default function ProductDetailPage() {
         '--card': product.theme.surface,
         '--foreground': product.theme.textPrimary || '0 0% 10%',
         '--muted-foreground': product.theme.textSecondary || '0 0% 45%',
+        '--border': product.theme.textPrimary ? `${product.theme.textPrimary.split(' ').slice(0, 2).join(' ')} 20%` : undefined,
     } as React.CSSProperties : {};
 
     return (
         <div className="pt-20 bg-background min-h-screen transition-colors duration-500" style={themeStyles}>
             {/* Breadcrumb / Back Navigation */}
-            <div className="border-b bg-muted/20">
+            <div className="border-b border-foreground/10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                     <Link href="/products">
-                        <Button variant="ghost" className="pl-0 hover:pl-2 transition-all text-muted-foreground hover:text-foreground">
+                        <Button variant="ghost" className="pl-0 hover:pl-2 transition-all text-foreground/70 hover:text-foreground">
                             <ArrowLeft className="mr-2 h-4 w-4" />
                             Back to Products
                         </Button>
@@ -101,11 +99,11 @@ export default function ProductDetailPage() {
                     >
                         <div>
                             <div className="flex items-center gap-3 mb-4">
-                                <Badge variant="outline" className="uppercase tracking-widest text-xs font-semibold px-3 py-1">
+                                <Badge variant="outline" className="uppercase tracking-widest text-xs font-semibold px-3 py-1 border-foreground/30 text-foreground">
                                     {product.category}
                                 </Badge>
                                 {product.gaugeRange && (
-                                    <span className="text-sm font-medium text-muted-foreground px-2 border-l border-border">
+                                    <span className="text-sm font-medium text-foreground/60 px-2 border-l border-foreground/20">
                                         {product.gaugeRange}
                                     </span>
                                 )}
@@ -115,63 +113,63 @@ export default function ProductDetailPage() {
                                 {product.name}
                             </h1>
 
-                            <p className="text-lg text-muted-foreground leading-relaxed">
+                            <p className="text-lg text-foreground/80 leading-relaxed">
                                 {product.description}
                             </p>
                         </div>
 
-                        <Separator />
+                        <Separator className="bg-foreground/10" />
 
                         <div className="grid sm:grid-cols-2 gap-x-8 gap-y-6">
                             <div>
-                                <h3 className="font-semibold text-sm uppercase tracking-wide text-primary mb-4">Oil Specifications</h3>
+                                <h3 className="font-semibold text-sm uppercase tracking-wide text-foreground/50 mb-4">Oil Specifications</h3>
                                 <ul className="space-y-3">
-                                    <li className="flex justify-between items-center py-2 border-b border-border/50">
-                                        <span className="text-muted-foreground text-sm">Packaging</span>
-                                        <span className="font-medium">{product.gaugeRange}</span>
+                                    <li className="flex justify-between items-center py-2 border-b border-foreground/10">
+                                        <span className="text-foreground/60 text-sm">Packaging</span>
+                                        <span className="font-medium text-foreground">{product.gaugeRange}</span>
                                     </li>
-                                    <li className="flex justify-between items-center py-2 border-b border-border/50">
-                                        <span className="text-muted-foreground text-sm">Source</span>
-                                        <span className="font-medium">{product.material}</span>
+                                    <li className="flex justify-between items-center py-2 border-b border-foreground/10">
+                                        <span className="text-foreground/60 text-sm">Source</span>
+                                        <span className="font-medium text-foreground">{product.material}</span>
                                     </li>
-                                    <li className="flex justify-between items-center py-2 border-b border-border/50">
-                                        <span className="text-muted-foreground text-sm">Purity</span>
-                                        <span className="font-medium">{product.coating}</span>
+                                    <li className="flex justify-between items-center py-2 border-b border-foreground/10">
+                                        <span className="text-foreground/60 text-sm">Purity</span>
+                                        <span className="font-medium text-foreground">{product.coating}</span>
                                     </li>
                                 </ul>
                             </div>
 
                             <div>
-                                <h3 className="font-semibold text-sm uppercase tracking-wide text-primary mb-4">Features</h3>
+                                <h3 className="font-semibold text-sm uppercase tracking-wide text-foreground/50 mb-4">Features</h3>
                                 <div className="space-y-3">
                                     {product.features.map((feature) => (
                                         <div key={feature} className="flex items-start gap-3">
-                                            <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 shrink-0" />
-                                            <span className="text-sm">{feature}</span>
+                                            <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 shrink-0" />
+                                            <span className="text-sm text-foreground/90">{feature}</span>
                                         </div>
                                     ))}
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-muted/30 p-6 rounded-xl border border-border/50">
-                            <h3 className="font-semibold mb-2 flex items-center gap-2">
+                        <div className="bg-foreground/5 p-6 rounded-xl border border-foreground/10">
+                            <h3 className="font-semibold mb-2 flex items-center gap-2 text-foreground">
                                 <Shield className="h-4 w-4 text-primary" />
                                 Application
                             </h3>
-                            <p className="text-sm text-muted-foreground">
+                            <p className="text-sm text-foreground/70">
                                 {product.application}
                             </p>
                         </div>
 
                         <div className="pt-6 space-y-4">
                             <Link href="/contact">
-                                <Button size="lg" className="w-full sm:w-auto h-14 px-8 text-lg font-semibold shadow-xl shadow-primary/20 hover:shadow-primary/30 transition-all gap-2">
+                                <Button size="lg" className="w-full sm:w-auto h-14 px-8 text-lg font-semibold shadow-xl shadow-primary/20 hover:shadow-primary/30 transition-all gap-2 bg-primary text-white hover:bg-primary/90">
                                     <Mail className="h-5 w-5" />
                                     Request Bulk Pricing
                                 </Button>
                             </Link>
-                            <p className="text-xs text-muted-foreground text-center sm:text-left pl-1">
+                            <p className="text-xs text-foreground/50 text-center sm:text-left pl-1">
                                 Typical response time: Within 24 hours
                             </p>
                         </div>
@@ -179,28 +177,28 @@ export default function ProductDetailPage() {
                 </div>
             </div>
 
-            {/* Related Products */}
+            {/* Related Products Section */}
             {
                 relatedProducts.length > 0 && (
-                    <section className="py-20 bg-muted/20 border-t mt-12">
+                    <section className="py-20 border-t border-foreground/10 mt-12">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <h2 className="text-2xl font-bold mb-8 font-heading">Related Products</h2>
+                            <h2 className="text-2xl font-bold mb-8 font-heading text-foreground">Related Products</h2>
                             <div className="grid md:grid-cols-3 gap-6">
                                 {relatedProducts.map((p) => (
                                     <motion.div key={p.id} variants={fadeInUp} initial="initial" whileInView="animate" viewport={{ once: true }}>
                                         <Link href={`/products/${p.id}`}>
-                                            <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full border-0 bg-background">
+                                            <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full border border-foreground/10 bg-background/50">
                                                 <CardContent className="p-4 flex gap-4 items-center h-full">
-                                                    <div className="h-20 w-20 bg-muted rounded-lg flex items-center justify-center shrink-0">
+                                                    <div className="h-20 w-20 bg-foreground/10 rounded-lg flex items-center justify-center shrink-0">
                                                         {p.image ? (
                                                             <img src={p.image} className="w-full h-full object-contain p-2" alt={p.name} />
                                                         ) : (
-                                                            <Factory className="h-8 w-8 text-muted-foreground/30" />
+                                                            <CheckCircle className="h-8 w-8 text-foreground/20" />
                                                         )}
                                                     </div>
                                                     <div>
-                                                        <h4 className="font-semibold line-clamp-1">{p.name}</h4>
-                                                        <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{p.description}</p>
+                                                        <h4 className="font-semibold line-clamp-1 text-foreground">{p.name}</h4>
+                                                        <p className="text-xs text-foreground/60 mt-1 line-clamp-2">{p.description}</p>
                                                     </div>
                                                 </CardContent>
                                             </Card>
