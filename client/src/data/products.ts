@@ -149,9 +149,9 @@ export const products: Product[] = [
             primary: "218 69% 38%",       // Primary Blue #1E4FA3
             secondary: "0 66% 47%",       // Strong Red #C62828
             accent: "45 89% 57%",         // Accent Yellow #F4C430
-            bg: "0 66% 47%",            // Light Background #F5F7FA
+            bg: "216 33% 97%",            // Light Background #F5F7FA
             surface: "0 0% 100%",
-            textPrimary: "0 0% 100%",      // Dark Text #1A1A1A
+            textPrimary: "0 0% 10%",      // Dark Text #1A1A1A
             textSecondary: "220 9% 46%"    // Neutral Gray #6B7280
         }
     }

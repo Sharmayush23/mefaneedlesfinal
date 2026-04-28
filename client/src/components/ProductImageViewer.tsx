@@ -24,6 +24,7 @@ export default function ProductImageViewer({
 
   // Magnifier state
   const [magnify, setMagnify] = useState(false);
+  const [hasMoved, setHasMoved] = useState(false);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const imgContainerRef = useRef<HTMLDivElement>(null);
 
@@ -35,6 +36,7 @@ export default function ProductImageViewer({
     const x = Math.min(100, Math.max(0, ((e.clientX - rect.left) / rect.width) * 100));
     const y = Math.min(100, Math.max(0, ((e.clientY - rect.top) / rect.height) * 100));
     setCursorPos({ x, y });
+    setHasMoved(true);
   }, []);
 
   const openLightbox = (index: number) => {
@@ -59,15 +61,15 @@ export default function ProductImageViewer({
           initial={{ opacity: 0.6, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.35 }}
-          className="relative rounded-2xl overflow-hidden border border-border/40 shadow-2xl bg-white cursor-zoom-in select-none"
-          style={{ aspectRatio: "4/3" }}
+          className="relative rounded-2xl overflow-hidden border border-border/40 shadow-2xl cursor-zoom-in select-none"
+          style={{ aspectRatio: "4/3", backgroundColor: '#ffffff' }}
           onMouseEnter={() => setMagnify(true)}
-          onMouseLeave={() => setMagnify(false)}
+          onMouseLeave={() => { setMagnify(false); setHasMoved(false); }}
           onMouseMove={handleMouseMove}
           onClick={() => openLightbox(selectedIndex)}
         >
           {/* Solid background for image to avoid tinting from page background */}
-          <div className="absolute inset-0 bg-white z-0" />
+          <div className="absolute inset-0 z-0" style={{ backgroundColor: '#ffffff' }} />
           
           {/* Subtle radial depth overlay */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.02)_100%)] pointer-events-none z-1" />
@@ -87,17 +89,18 @@ export default function ProductImageViewer({
             </div>
           )}
 
-          {/* Product image - REMOVED mix-blend-multiply to fix tinting */}
+          {/* Product image - explicitly clear blend modes and filters */}
           <img
             src={currentImage}
             alt={productName}
             className="relative z-10 w-full h-full object-contain p-4"
+            style={{ mixBlendMode: 'normal', filter: 'none' }}
             draggable={false}
           />
 
           {/* Magnifier lens overlay */}
           <AnimatePresence>
-            {magnify && (
+            {magnify && hasMoved && (
               <motion.div
                 key="magnifier"
                 initial={{ opacity: 0, scale: 0.8 }}
