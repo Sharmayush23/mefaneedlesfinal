@@ -10,7 +10,7 @@ interface ProductImageViewerProps {
   badge?: string;
 }
 
-const ZOOM_FACTOR = 3.5;
+const ZOOM_FACTOR = 3;
 
 export default function ProductImageViewer({
   images,
@@ -59,15 +59,18 @@ export default function ProductImageViewer({
           initial={{ opacity: 0.6, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.35 }}
-          className="relative rounded-2xl overflow-hidden border border-border/40 shadow-2xl bg-background cursor-zoom-in select-none"
+          className="relative rounded-2xl overflow-hidden border border-border/40 shadow-2xl bg-white cursor-zoom-in select-none"
           style={{ aspectRatio: "4/3" }}
           onMouseEnter={() => setMagnify(true)}
           onMouseLeave={() => setMagnify(false)}
           onMouseMove={handleMouseMove}
           onClick={() => openLightbox(selectedIndex)}
         >
-          {/* Background - Matched to Theme Cream */}
-          <div className="absolute inset-0 bg-background pointer-events-none z-0" />
+          {/* Solid background for image to avoid tinting from page background */}
+          <div className="absolute inset-0 bg-white z-0" />
+          
+          {/* Subtle radial depth overlay */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.02)_100%)] pointer-events-none z-1" />
 
           {/* Badge */}
           {badge && (
@@ -78,17 +81,17 @@ export default function ProductImageViewer({
 
           {/* Zoom hint */}
           {!magnify && (
-            <div className="absolute bottom-4 right-4 z-20 flex items-center gap-1.5 bg-black/50 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm pointer-events-none">
+            <div className="absolute bottom-4 right-4 z-20 flex items-center gap-1.5 bg-black/60 text-white text-[10px] sm:text-xs px-3 py-1.5 rounded-full backdrop-blur-md pointer-events-none border border-white/10">
               <ZoomIn className="w-3.5 h-3.5" />
               Hover to zoom · Click to expand
             </div>
           )}
 
-          {/* Product image */}
+          {/* Product image - REMOVED mix-blend-multiply to fix tinting */}
           <img
             src={currentImage}
             alt={productName}
-            className="relative z-10 w-full h-full object-contain p-1 scale-[1.05] transition-transform duration-500 mix-blend-multiply dark:mix-blend-normal"
+            className="relative z-10 w-full h-full object-contain p-4"
             draggable={false}
           />
 
@@ -103,15 +106,12 @@ export default function ProductImageViewer({
                 transition={{ duration: 0.15 }}
                 className="absolute z-30 pointer-events-none rounded-full border-2 border-primary shadow-2xl overflow-hidden"
                 style={{
-                  width: 180,
-                  height: 180,
-                  left: `calc(${cursorPos.x}% - 90px)`,
-                  top: `calc(${cursorPos.y}% - 90px)`,
-                  boxShadow: "0 8px 40px rgba(0,0,0,0.35)",
-                  transform: `translate(
-                    clamp(90px - ${cursorPos.x}%, 0px, (100% - 90px) - ${cursorPos.x}%),
-                    clamp(90px - ${cursorPos.y}%, 0px, (100% - 90px) - ${cursorPos.y}%)
-                  )`
+                  width: 200, // Bigger lens
+                  height: 200,
+                  left: `calc(${cursorPos.x}% - 100px)`,
+                  top: `calc(${cursorPos.y}% - 100px)`,
+                  boxShadow: "0 12px 48px rgba(0,0,0,0.4)",
+                  backgroundColor: "white", // White bg for lens
                 }}
               >
                 <div
@@ -121,11 +121,10 @@ export default function ProductImageViewer({
                     backgroundRepeat: "no-repeat",
                     backgroundSize: `${ZOOM_FACTOR * 100}%`,
                     backgroundPosition: `${cursorPos.x}% ${cursorPos.y}%`,
-                    mixBlendMode: "normal",
                   }}
                 />
                 {/* Lens shine */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/30 to-transparent pointer-events-none" />
               </motion.div>
             )}
           </AnimatePresence>
@@ -139,18 +138,18 @@ export default function ProductImageViewer({
                 key={i}
                 onClick={() => onSelectIndex(i)}
                 className={`
-                  relative aspect-square rounded-xl overflow-hidden border-2 transition-all duration-200 focus:outline-none
+                  relative aspect-square rounded-xl overflow-hidden border-2 transition-all duration-200 focus:outline-none bg-white
                   ${
                     selectedIndex === i
                       ? "border-primary ring-2 ring-primary/25 shadow-lg scale-[1.04]"
-                      : "border-border/30 hover:border-primary/40 hover:scale-[1.02] bg-muted/40"
+                      : "border-border/30 hover:border-primary/40 hover:scale-[1.02]"
                   }
                 `}
               >
                 <img
                   src={img}
                   alt={`${productName} view ${i + 1}`}
-                  className="w-full h-full object-contain p-1.5 mix-blend-multiply dark:mix-blend-normal"
+                  className="w-full h-full object-contain p-1.5"
                   draggable={false}
                 />
               </button>
