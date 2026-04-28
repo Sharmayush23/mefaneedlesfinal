@@ -65,10 +65,10 @@ export const products: Product[] = [
             primary: "123 46% 34%",       // Natural Green #0c500fff (Buttons)
             secondary: "48 100% 45%",     // Mustard Yellow #E6B800
             accent: "42 100% 50%",        // Golden Accent #FFB300
-            bg: "0 66% 47%",              // Product Red #f45a5aff (Background)
+            bg: "45 30% 98%",             // Soft Cream BG
             surface: "0 0% 100%",
-            textPrimary: "0 0% 100%",      // White Text for contrast on red
-            textSecondary: "0 0% 90%"      // Soft White
+            textPrimary: "0 0% 10%",      // Dark Text
+            textSecondary: "0 0% 40%"     // Neutral Gray
         }
     },
     {
@@ -83,12 +83,12 @@ export const products: Product[] = [
         application: "Deep Frying & Frying",
         image: cottonOilImg,
         theme: {
-            primary: "0 66% 47%",       // Royal Blue #ffffffff (Buttons)
+            primary: "218 69% 38%",       // Royal Blue #ffffffff (Buttons)
             secondary: "0 66% 47%",       // Primary Red #C62828
             accent: "0 0% 98%",         // Bright Yellow #F4C430
-            bg: "218 69% 38%",               // Soft White BG 
+            bg: "216 33% 97%",            // Soft White/Blue BG 
             surface: "0 0% 100%",
-            textPrimary: "0 0% 100%",      // Dark Text
+            textPrimary: "0 0% 10%",      // Dark Text
             textSecondary: "0 0% 40%"     // Neutral Gray  
         }
     },
