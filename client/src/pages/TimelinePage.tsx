@@ -73,11 +73,13 @@ export default function TimelinePage() {
                   className="relative w-full max-w-md mx-auto rounded-xl shadow-2xl"
                   data-testid="img-founder-timeline"
                 />
-                <div className="absolute bottom-4 left-4 right-4 bg-black/70 backdrop-blur-md rounded-lg p-4">
-                  <p className="font-heading font-semibold text-white text-lg" data-testid="text-founder-name-timeline">
+                <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md rounded-lg p-3 border border-white/10 shadow-xl max-w-[180px]">
+                  <p className="font-heading font-semibold text-white text-sm" data-testid="text-founder-name-timeline">
                     Tradition of Purity
                   </p>
-                  <p className="text-white/70" data-testid="text-founder-title-timeline">Established in 1968</p>
+                  <p className="text-white/60 text-[10px] uppercase tracking-wider" data-testid="text-founder-title-timeline">
+                    Since 1968
+                  </p>
                 </div>
               </div>
             </motion.div>

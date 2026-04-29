@@ -42,11 +42,11 @@ function deduceDescription(name: string): string {
 
 // Automatically import all images from the assets/products directory
 // Use absolute path from Vite root (client directory)
-import mustardOilImg from "@/assets/products/FINAL IMAGES/MUSTARD OIL.png";
-import cottonOilImg from "@/assets/products/FINAL IMAGES/COTTAN SEED REFINED OIL.png";
-import sunflowerOilImg from "@/assets/products/FINAL IMAGES/SUNFLOWER OIL.png";
-import cottonseedCakeImg from "@/assets/products/FINAL IMAGES/COTTAN SEED CAKE.png";
-import cattleFeedImg from "@/assets/products/FINAL IMAGES/CATTLE FEED.png";
+import mustardOilImg from "@/assets/products/final-images/mustard-oil.png";
+import cottonOilImg from "@/assets/products/final-images/cottan-seed-refined-oil.png";
+import sunflowerOilImg from "@/assets/products/final-images/sunflower-oil.png";
+import cottonseedCakeImg from "@/assets/products/final-images/cottan-seed-cake.png";
+import cattleFeedImg from "@/assets/products/final-images/cattle-feed.png";
 
 // Hardcoded Sachkhand Products
 export const products: Product[] = [
@@ -62,13 +62,13 @@ export const products: Product[] = [
         application: "Cooking & Preservation",
         image: mustardOilImg,
         theme: {
-            primary: "123 46% 34%",       // Natural Green #0c500fff (Buttons)
-            secondary: "48 100% 45%",     // Mustard Yellow #E6B800
-            accent: "42 100% 50%",        // Golden Accent #FFB300
-            bg: "45 30% 98%",             // Soft Cream BG
+            primary: "45 100% 50%",       // Golden Button #FFB300 (High contrast on Red)
+            secondary: "48 100% 45%",     // Mustard Yellow
+            accent: "42 100% 50%",        // Golden Accent
+            bg: "0 72% 35%",             // Rich Red BG #9c1a1a
             surface: "0 0% 100%",
-            textPrimary: "0 0% 10%",      // Dark Text
-            textSecondary: "0 0% 40%"     // Neutral Gray
+            textPrimary: "0 0% 100%",      // White Text
+            textSecondary: "0 0% 90%"     // Light Gray
         }
     },
     {
@@ -83,13 +83,13 @@ export const products: Product[] = [
         application: "Deep Frying & Frying",
         image: cottonOilImg,
         theme: {
-            primary: "218 69% 38%",       // Royal Blue #ffffffff (Buttons)
-            secondary: "0 66% 47%",       // Primary Red #C62828
-            accent: "0 0% 98%",         // Bright Yellow #F4C430
-            bg: "216 33% 97%",            // Soft White/Blue BG 
+            primary: "0 84% 50%",         // Red Button #E51C23
+            secondary: "0 66% 47%",       // Primary Red
+            accent: "0 0% 98%",           // Accent
+            bg: "220 60% 20%",            // Deep Blue BG #14213d
             surface: "0 0% 100%",
-            textPrimary: "0 0% 10%",      // Dark Text
-            textSecondary: "0 0% 40%"     // Neutral Gray  
+            textPrimary: "0 0% 100%",      // White Text
+            textSecondary: "0 0% 90%"     // Light Gray
         }
     },
     {
@@ -107,7 +107,7 @@ export const products: Product[] = [
             primary: "123 46% 34%",       // Green for health
             secondary: "45 100% 50%",     // Bright Yellow
             accent: "55 100% 60%",        // Light Accent
-            bg: "216 33% 97%",            // Very Light Sunflower
+            bg: "45 40% 96%",             // Cream BG #fcf7e9
             surface: "0 0% 100%",
             textPrimary: "0 0% 15%",      // Darkened Text
             textSecondary: "0 0% 40%"     // Muted Text
@@ -125,13 +125,13 @@ export const products: Product[] = [
         application: "Animal Nutrition",
         image: cottonseedCakeImg,
         theme: {
-            primary: "218 69% 38%",       // Primary Blue #1E4FA3
+            primary: "0 84% 50%",         // Red Button #E51C23
             secondary: "0 66% 47%",       // Strong Red #C62828
             accent: "45 89% 57%",         // Accent Yellow #F4C430
-            bg: "216 33% 97%",            // Light Background #F5F7FA
+            bg: "45 40% 96%",             // Cream/Light BG
             surface: "0 0% 100%",
-            textPrimary: "0 0% 10%",      // Dark Text #1A1A1A
-            textSecondary: "220 9% 46%"    // Neutral Gray #6B7280
+            textPrimary: "215 80% 30%",   // Blue Text #0f3d7a
+            textSecondary: "215 40% 45%"   // Muted Blue
         }
     },
     {
@@ -146,13 +146,13 @@ export const products: Product[] = [
         application: "Daily Cattle Nutrition",
         image: cattleFeedImg,
         theme: {
-            primary: "218 69% 38%",       // Primary Blue #1E4FA3
-            secondary: "0 66% 47%",       // Strong Red #C62828
-            accent: "45 89% 57%",         // Accent Yellow #F4C430
-            bg: "216 33% 97%",            // Light Background #F5F7FA
+            primary: "0 84% 50%",         // Red Button #E51C23
+            secondary: "0 66% 47%",       // Strong Red
+            accent: "45 89% 57%",         // Accent Yellow
+            bg: "45 40% 96%",             // Cream/Light BG
             surface: "0 0% 100%",
-            textPrimary: "0 0% 10%",      // Dark Text #1A1A1A
-            textSecondary: "220 9% 46%"    // Neutral Gray #6B7280
+            textPrimary: "215 80% 30%",   // Blue Text #0f3d7a
+            textSecondary: "215 40% 45%"  // Muted Blue
         }
     }
 ];

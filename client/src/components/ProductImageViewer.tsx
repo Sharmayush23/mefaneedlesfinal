@@ -10,7 +10,7 @@ interface ProductImageViewerProps {
   badge?: string;
 }
 
-const ZOOM_FACTOR = 3;
+const ZOOM_FACTOR = 4;
 
 export default function ProductImageViewer({
   images,
@@ -93,7 +93,7 @@ export default function ProductImageViewer({
           <img
             src={currentImage}
             alt={productName}
-            className="relative z-10 w-full h-full object-contain p-4"
+            className="relative z-10 w-full h-full object-contain p-0 transition-transform duration-700 hover:scale-110"
             style={{ mixBlendMode: 'normal', filter: 'none' }}
             draggable={false}
           />
