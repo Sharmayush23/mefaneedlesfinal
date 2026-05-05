@@ -9,7 +9,7 @@ import {
 import mustardOilImg from "@/assets/products/final-images/mustard-oil.png";
 import cottonOilImg from "@/assets/products/final-images/cotton-seed-refined-oil.png";
 import sunflowerOilImg from "@/assets/products/final-images/sunflower-oil.png";
-import cottonseedCakeImg from "@/assets/products/final-images/cotton-seed-cake.jpeg";
+import cottonseedCakeImg from "@/assets/products/final-images/cotton-seed-cake.png";
 
 const slides = [
   { 
