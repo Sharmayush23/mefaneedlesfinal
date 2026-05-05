@@ -43,9 +43,9 @@ function deduceDescription(name: string): string {
 // Automatically import all images from the assets/products directory
 // Use absolute path from Vite root (client directory)
 import mustardOilImg from "@/assets/products/final-images/mustard-oil.png";
-import cottonOilImg from "@/assets/products/final-images/cottan-seed-refined-oil.png";
+import cottonOilImg from "@/assets/products/final-images/cotton-seed-refined-oil.png";
 import sunflowerOilImg from "@/assets/products/final-images/sunflower-oil.png";
-import cottonseedCakeImg from "@/assets/products/final-images/cottan-seed-cake.png";
+import cottonseedCakeImg from "@/assets/products/final-images/cotton-seed-cake.png";
 import cattleFeedImg from "@/assets/products/final-images/cattle-feed.png";
 
 // Hardcoded Sachkhand Products
@@ -125,13 +125,13 @@ export const products: Product[] = [
         application: "Animal Nutrition",
         image: cottonseedCakeImg,
         theme: {
-            primary: "0 84% 50%",         // Red Button #E51C23
-            secondary: "0 66% 47%",       // Strong Red #C62828
-            accent: "45 89% 57%",         // Accent Yellow #F4C430
-            bg: "45 40% 96%",             // Cream/Light BG
+            primary: "0 84% 50%",         // Vibrant Red (from bag)
+            secondary: "215 80% 30%",     // Deep Blue (from Sachkhand logo)
+            accent: "142 45% 45%",        // Grass Green (from background)
+            bg: "120 20% 97%",            // Very Light Green Tint
             surface: "0 0% 100%",
-            textPrimary: "215 80% 30%",   // Blue Text #0f3d7a
-            textSecondary: "215 40% 45%"   // Muted Blue
+            textPrimary: "215 80% 25%",   // Dark Blue
+            textSecondary: "215 40% 40%"   // Muted Blue
         }
     },
     {

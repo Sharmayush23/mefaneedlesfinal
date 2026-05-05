@@ -28,7 +28,7 @@ const initialProducts: Product[] = [
     coating: "None (Pure Oil)",
     application: "Cooking & Preservation",
     badge: "Pure",
-    image: "/src/assets/products/FINAL IMAGES/MUSTARD OIL.png",
+    image: "/src/assets/products/final-images/mustard-oil.png",
   },
   {
     id: "cotton-refined-oil",
@@ -41,7 +41,7 @@ const initialProducts: Product[] = [
     coating: "Filtered",
     application: "Deep Frying & Frying",
     badge: "Premium",
-    image: "/src/assets/products/FINAL IMAGES/COTTAN SEED REFINED OIL.png",
+    image: "/src/assets/products/final-images/cotton-seed-refined-oil.png",
   },
   {
     id: "sunflower-oil",
@@ -54,7 +54,7 @@ const initialProducts: Product[] = [
     coating: "Refined",
     application: "Daily Cooking & Frying",
     badge: "Healthy",
-    image: "/src/assets/products/FINAL IMAGES/SUNFLOWER OIL.png",
+    image: "/src/assets/products/final-images/sunflower-oil.png",
   },
   {
     id: "cottonseed-cake",
@@ -67,7 +67,7 @@ const initialProducts: Product[] = [
     coating: "Pressed Cake",
     application: "Animal Nutrition",
     badge: "Nutritious",
-    image: "/src/assets/products/FINAL IMAGES/COTTAN SEED CAKE.png",
+    image: "/src/assets/products/final-images/cotton-seed-cake.png",
   },
   {
     id: "cattle-feed",
@@ -80,7 +80,7 @@ const initialProducts: Product[] = [
     coating: "Pelletized",
     application: "Daily Cattle Nutrition",
     badge: "Premium Feed",
-    image: "/src/assets/products/FINAL IMAGES/CATTLE FEED.png",
+    image: "/src/assets/products/final-images/cattle-feed.png",
   }
 ];
 
