@@ -67,7 +67,7 @@ const initialProducts: Product[] = [
     coating: "Pressed Cake",
     application: "Animal Nutrition",
     badge: "Nutritious",
-    image: "/src/assets/products/final-images/cotton-seed-cake.png",
+    image: "/src/assets/products/final-images/cotton-seed-cake.jpeg",
   },
   {
     id: "cattle-feed",

@@ -45,7 +45,7 @@ function deduceDescription(name: string): string {
 import mustardOilImg from "@/assets/products/final-images/mustard-oil.png";
 import cottonOilImg from "@/assets/products/final-images/cotton-seed-refined-oil.png";
 import sunflowerOilImg from "@/assets/products/final-images/sunflower-oil.png";
-import cottonseedCakeImg from "@/assets/products/final-images/cotton-seed-cake.png";
+import cottonseedCakeImg from "@/assets/products/final-images/cotton-seed-cake.jpeg";
 import cattleFeedImg from "@/assets/products/final-images/cattle-feed.png";
 
 // Hardcoded Sachkhand Products
