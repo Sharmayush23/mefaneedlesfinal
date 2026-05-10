@@ -197,7 +197,6 @@ export default function FacilitiesPage() {
             >
               Why Families Choose Sachkhand
             </motion.p>
-            <h2 className="font-heading text-4xl sm:text-5xl font-bold tracking-tight">Technical Purity Strengths</h2>
           </motion.div>
 
           <motion.div
@@ -272,7 +271,6 @@ export default function FacilitiesPage() {
           <div className="space-y-6">
             {[
               { q: "What makes Sachkhand oil different?", a: "Our traditional Kachi Ghani extraction and rigorous purity testing ensure that Sachkhand oil is more flavorful and healthier than standard refined options." },
-              { q: "Is your oil chemical-free?", a: "Yes, we guarantee that our mustard oil is 100% pure and free from any added chemicals or preservatives." },
               { q: "How do you ensure quality control?", a: "We use laboratory testing and automated hygienic bottling to ensure every single bottle meets our zero-adulteration policy." }
             ].map((item, i) => (
               <div key={i} className="bg-background rounded-xl p-6 shadow-sm border">

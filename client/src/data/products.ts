@@ -76,11 +76,11 @@ export const products: Product[] = [
         name: "Cotton Refined Oil",
         category: "oils",
         description: "High-quality refined cotton oil, ideal for light cooking and crispy frying.",
-        features: ["Light & Neutral", "High Smoke Point", "Healthy Frying", "Vitamin Fortified"],
-        gaugeRange: "1L, 2L, 5L, 15L",
-        material: "Refined Cottonseeds",
-        coating: "Filtered",
-        application: "Deep Frying & Frying",
+        features: ["Light & Neutral", "High Smoke Point", "Healthy Frying"],
+        gaugeRange: "13kg, 15kg",
+        material: "",
+        coating: "",
+        application: "Salad Dressing",
         image: cottonOilImg,
         theme: {
             primary: "0 84% 50%",         // Red Button #E51C23
@@ -120,7 +120,7 @@ export const products: Product[] = [
         description: "Nutritious cottonseed cake, a high-protein supplement for livestock health.",
         features: ["High Protein", "Energy Rich", "Natural Fiber", "Livestock Growth"],
         gaugeRange: "25kg, 50kg Bags",
-        material: "Residual Cottonseeds",
+        material: "Cottonseeds",
         coating: "Pressed Cake",
         application: "Animal Nutrition",
         image: cottonseedCakeImg,
@@ -143,7 +143,7 @@ export const products: Product[] = [
         gaugeRange: "50kg Bags",
         material: "Multigrain Mix",
         coating: "Pelletized",
-        application: "Daily Cattle Nutrition",
+        application: "To milking cattle and bufallos",
         image: cattleFeedImg,
         theme: {
             primary: "0 84% 50%",         // Red Button #E51C23

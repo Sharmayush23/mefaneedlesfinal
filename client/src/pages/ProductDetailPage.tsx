@@ -128,14 +128,18 @@ export default function ProductDetailPage() {
                                         <span className="text-foreground/60 text-sm">Packaging</span>
                                         <span className="font-medium text-foreground">{product.gaugeRange}</span>
                                     </li>
-                                    <li className="flex justify-between items-center py-2 border-b border-foreground/10">
-                                        <span className="text-foreground/60 text-sm">Source</span>
-                                        <span className="font-medium text-foreground">{product.material}</span>
-                                    </li>
-                                    <li className="flex justify-between items-center py-2 border-b border-foreground/10">
-                                        <span className="text-foreground/60 text-sm">Purity</span>
-                                        <span className="font-medium text-foreground">{product.coating}</span>
-                                    </li>
+                                    {product.material && (
+                                        <li className="flex justify-between items-center py-2 border-b border-foreground/10">
+                                            <span className="text-foreground/60 text-sm">Source</span>
+                                            <span className="font-medium text-foreground">{product.material}</span>
+                                        </li>
+                                    )}
+                                    {product.coating && (
+                                        <li className="flex justify-between items-center py-2 border-b border-foreground/10">
+                                            <span className="text-foreground/60 text-sm">Purity</span>
+                                            <span className="font-medium text-foreground">{product.coating}</span>
+                                        </li>
+                                    )}
                                 </ul>
                             </div>
 
