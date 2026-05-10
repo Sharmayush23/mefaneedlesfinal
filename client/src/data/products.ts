@@ -122,7 +122,7 @@ export const products: Product[] = [
         gaugeRange: "25kg, 50kg Bags",
         material: "Cottonseeds",
         coating: "Pressed Cake",
-        application: "Animal Nutrition",
+        application: "Milking cow in cattle feed",
         image: cottonseedCakeImg,
         theme: {
             primary: "0 84% 50%",         // Vibrant Red (from bag)
